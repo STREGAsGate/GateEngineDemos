@@ -10,10 +10,10 @@ import GateEngine
 @main
 final class RotatingCubeGameDelegate: GameDelegate {
     func didFinishLaunching(game: Game, options: LaunchOptions) {
-        // Add the cube update system to the game. System implimentation is below.
+        // Add the cube update system to the game. System implimentation is below
         game.insertSystem(RotatingCubeSystem.self)
         
-        // Add the cube rendering system to the game. RenderingSystem implimentation is below.
+        // Add the cube rendering system to the game. RenderingSystem implimentation is below
         game.insertSystem(RotatingCubeRenderingSystem.self)
         
         // Create a new entity to store the camera
@@ -33,7 +33,9 @@ final class RotatingCubeGameDelegate: GameDelegate {
     }
 }
 
+// System subclasses are used to manipulate the simulation. They can't be used to draw content.
 class RotatingCubeSystem: System {
+    // setup() is executed a single time when the System is added to the game
     override func setup() {
         // Create a new entity
         let cube = Entity()
@@ -46,15 +48,15 @@ class RotatingCubeSystem: System {
         
         // Give the entity 3D geometry
         cube.configure(RenderingGeometryComponent.self) { component in
-            // Load the engine provided unit cube. A unit cube is 1x1x1 units.
+            // Load the engine provided unit cube. A unit cube is 1x1x1 units
             component.geometry = Geometry(path: "GateEngine/Primitives/Unit Cube.obj")
         }
         
         // Give the entity a material
         cube.configure(MaterialComponent.self) { material in
-            // Begine modifying material channel zero.
+            // Begine modifying material channel zero
             material.channel(0) { channel in
-                // Load the engine provided placeholder texture.
+                // Load the engine provided placeholder texture
                 channel.texture = Texture(path: "GateEngine/Textures/CheckerPattern.png")
             }
         }
@@ -63,32 +65,39 @@ class RotatingCubeSystem: System {
         game.insertEntity(cube)
     }
     
+    // update(withTimePassed:) is executed every frame
     override func update(withTimePassed deltaTime: Float) {
         for entity in game.entities {
             
-            /// Make sure the entity has geometry, otherwise we will end up rotations other entities like the camera.
+            // Make sure the entity is not the camera
             guard entity.hasComponent(CameraComponent.self) == false else {continue}
                         
-            /// Get the 3D transform component if one exists, otherwise skip to the next entity
+            // Get the 3D transform component if one exists, otherwise skip to the next entity
             entity.configure(Transform3Component.self) {component in
-                /// Rotate by time passed around the forward axis
-                component.rotation *= Quaternion(Degrees(deltaTime * 15), axis: .forward)
-                /// Rotate by time passed around the up axis
-                component.rotation *= Quaternion(Degrees(deltaTime * 15), axis: .up)
+                // Create an angle based on how much time has passed
+                let angle = Degrees(deltaTime * 15)
+                // Rotate around the forward axis
+                component.rotation *= Quaternion(angle, axis: .forward)
+                // Rotate around the up axis
+                component.rotation *= Quaternion(angle, axis: .up)
             }
         }
     }
 }
 
+// RenderingSystem subclasses can draw content, however updating the simulation from a RenderingSystem is programming error
+// GateEngine allows for frame drops and headless execution for servers
+// In these cases RenderingSystems do not get updated
 class RotatingCubeRenderingSystem: RenderingSystem {
     override func render(window: Window, into framebuffer: RenderTarget, withTimePassed deltaTime: Float) {
         
-        // To draw something in Gate Engine you must create a container to store the renderable objects.
-        // A Scene is a container for 3D renderable objects and it requires a camera, so we'll create a scene camera from the games camera entity.
+        // To draw something in GateEngine you must create a container to store the renderable objects
+        // A Scene is a container for 3D renderable objects and it requires a Camera
+        // So we'll create a Camera from the game's cameraEntity
         guard let camera = Camera(game.cameraEntity) else {return}
         
-        // Create a Scene with the scene camera.
-        // Scene is light weight and you're meant to create a new one every frame.
+        // Create a Scene with the scene camera
+        // Scene is light weight and you're meant to create a new one every frame
         var scene = Scene(camera: camera)
 
         // Loop through all entites in the game
@@ -106,8 +115,8 @@ class RotatingCubeRenderingSystem: RenderingSystem {
             }
         }
         
-        // A framebuffer is a RenderTarget that represents thw window.
-        // We'll add our scene to the frameBuffer and the frameBUffer will automatically draw everything in order.
+        // A framebuffer is a RenderTarget that represents the window
+        // The frameBuffer will automatically draw the scene
         framebuffer.insert(scene)
     }
 }
