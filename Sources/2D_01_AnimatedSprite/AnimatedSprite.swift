@@ -10,7 +10,7 @@
 import GateEngine
 
 @main
-final class RotatingCubeGameDelegate: GameDelegate {
+final class AnimatedSpriteGameDelegate: GameDelegate {
     
     // didFinishLaunching() is executed immediatley after the game is ready to start
     func didFinishLaunching(game: Game, options: LaunchOptions) {
@@ -49,6 +49,7 @@ class AnimatedSpriteSystem: System {
         
         // Unwrap a SpriteComponent
         entity.configure(SpriteComponent.self) { component in
+            
             // set the size of the sprite relative to the native texture size
             component.spriteSize = Size2(width: 32, height: 32)
             
@@ -85,6 +86,7 @@ class AnimatedSpriteSystem: System {
         }
     }
     
+    // phase determines at which point the system should be updated relative to other systems
     override class var phase: System.Phase {.simulation}
 }
 
@@ -108,6 +110,7 @@ class AnimatedSpriteRenderingSystem: RenderingSystem {
         // Canvas is light weight and you're meant to create a new one every frame
         var canvas = Canvas()
         
+        // Loop through all entites in the game
         for entity in game.entities {
             
             // Make sure the entity has a SpriteComponent, otherwise move on
