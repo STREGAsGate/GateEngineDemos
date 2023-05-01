@@ -1,9 +1,25 @@
+
+#Swift
+.build
+.swiftpm
+Package.resolved
+
+#Apple
 .DS_Store
-/.build
-/Packages
-/*.xcodeproj
-xcuserdata/
-DerivedData/
-.swiftpm/config/registries.json
-.swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
-.netrc
+.icloud
+
+#Xcode
+*.xcuserdatad
+*.xcworkspace
+
+#Visual Studio
+.vs
+
+#Visual Studio Code
+.vscode
+
+#CLion
+.idea
+
+#Blender
+.blend1
