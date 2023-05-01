@@ -14,7 +14,7 @@ final class RotatingCubeGameDelegate: GameDelegate {
     
     // didFinishLaunching() is executed immediatley after the game is ready to start
     func didFinishLaunching(game: Game, options: LaunchOptions) {
-
+        
         // Add the engine provided SpriteSystem so our sprites get updated
         game.insertSystem(SpriteSystem.self)
         
@@ -73,7 +73,7 @@ class AnimatedSpriteSystem: System {
             // Unwrap a Transform2Component
             entity.configure(Transform2Component.self) { component in
                 
-                // the center of our custom resolution renderTarget
+                // the vertical center of our custom resolution renderTarget
                 let halfVerticalHeight: Float = 144 / 2
                 
                 // determine the horizontal position using the aspect ratio of the window
@@ -98,16 +98,18 @@ class AnimatedSpriteRenderingSystem: RenderingSystem {
     // and draw out sprite into that then draw that into the window
     let renderTarget = RenderTarget()
     
-    // render() is called only wehn drawing needs to be done
+    // render() is called only when drawing needs to be done
     override func render(game: Game, framebuffer: RenderTarget, layout: WindowLayout, withTimePassed deltaTime: Float) {
         
-        // We'll set the framebuffer to GameBoy resolution and use the windows aspect ratio to get an appropriate width
+        // Set the framebuffer to GameBoy resolution and use the windows aspect ratio to get an appropriate width
         renderTarget.size = Size2(144 * layout.windowSize.aspectRatio, 144)
         
-        // A Canvas is a draw container for 2D renderable objects
+        // A Canvas is a drawing container for 2D objects
+        // Canvas is light weight and you're meant to create a new one every frame
         var canvas = Canvas()
         
         for entity in game.entities {
+            
             // Make sure the entity has a SpriteComponent, otherwise move on
             guard let spriteComponent = entity.component(ofType: SpriteComponent.self) else {continue}
             // Make sure the entity has a Transform2Component, otherwise move on
