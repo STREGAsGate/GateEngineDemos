@@ -9,11 +9,14 @@ import GateEngine
 
 @main
 final class RotatingCubeGameDelegate: GameDelegate {
+    
+    // didFinishLaunching() is executed immediatley after the game is ready to start
     func didFinishLaunching(game: Game, options: LaunchOptions) {
-        // Add the cube update system to the game. System implimentation is below
+        
+        // Add the cube update system to the game. System implementation is below
         game.insertSystem(RotatingCubeSystem.self)
         
-        // Add the cube rendering system to the game. RenderingSystem implimentation is below
+        // Add the cube rendering system to the game. RenderingSystem implementation is below
         game.insertSystem(RotatingCubeRenderingSystem.self)
         
         // Create a new entity to store the camera
@@ -22,26 +25,40 @@ final class RotatingCubeGameDelegate: GameDelegate {
         // Add the camera component to the entity
         camera.insert(CameraComponent.self)
         
-        // Add and modify a 3D transform
+        // Unwrap a Transform3Component
         camera.configure(Transform3Component.self) { component in
-            // Move the camera backward 2 units
+            
+            // Move the camera backward, relative to it's rotation, by 1 units
             component.position.move(1, toward: component.rotation.backward)
         }
         
         // Add the camera entity to the game
         game.insertEntity(camera)
     }
+    
+    #if os(WASI)
+    // GateEngine automatically searches for resources on most platforms, however...
+    // HTML5 can't search becuase its a website. GateEngine will automatically search "ModuleName_ModuleName.resources".
+    // But this module has a different name then it's package. There is no way to obtain the package name at runtime.
+    // So We need to tell GateEngine the resource bundle name for this project, if you plan to deploy to HTML5.
+    func resourceSearchPaths() -> [URL] {
+        return [URL(string: "GateEngineDemos_3D_01_RotatingCube.resources")!]
+    }
+    #endif
 }
 
 // System subclasses are used to manipulate the simulation. They can't be used to draw content.
 class RotatingCubeSystem: System {
+    
     // setup() is executed a single time when the System is added to the game
-    override func setup() {
+    override func setup(game: Game) {
+        
         // Create a new entity
         let cube = Entity()
         
         // Give the entity a 3D transform
         cube.configure(Transform3Component.self) {component in
+            
             // Move 1 unit forward, so it's in front of the camera
             component.position.move(1, toward: .forward)
         }
@@ -54,7 +71,7 @@ class RotatingCubeSystem: System {
         
         // Give the entity a material
         cube.configure(MaterialComponent.self) { material in
-            // Begine modifying material channel zero
+            // Begin modifying material channel zero
             material.channel(0) { channel in
                 // Load the engine provided placeholder texture
                 channel.texture = Texture(path: "GateEngine/Textures/CheckerPattern.png")
@@ -65,8 +82,10 @@ class RotatingCubeSystem: System {
         game.insertEntity(cube)
     }
     
-    // update(withTimePassed:) is executed every frame
-    override func update(withTimePassed deltaTime: Float) {
+    // update() is executed every simulation tick, which may or may not be every frame
+    override func update(game: Game, input: HID, layout: WindowLayout, withTimePassed deltaTime: Float) {
+        
+        // Loop through all entites in the game
         for entity in game.entities {
             
             // Make sure the entity is not the camera
@@ -85,11 +104,14 @@ class RotatingCubeSystem: System {
     }
 }
 
-// RenderingSystem subclasses can draw content, however updating the simulation from a RenderingSystem is programming error
+// RenderingSystem subclasses can draw content
+// However, updating the simulation from a RenderingSystem is a programming error
 // GateEngine allows for frame drops and headless execution for servers
 // In these cases RenderingSystems do not get updated
 class RotatingCubeRenderingSystem: RenderingSystem {
-    override func render(window: Window, into framebuffer: RenderTarget, withTimePassed deltaTime: Float) {
+    
+    // render() is called only wehn drawing needs to be done
+    override func render(game: Game, framebuffer: RenderTarget, layout: WindowLayout, withTimePassed deltaTime: Float) {
         
         // To draw something in GateEngine you must create a container to store the renderable objects
         // A Scene is a container for 3D renderable objects and it requires a Camera
@@ -102,6 +124,7 @@ class RotatingCubeRenderingSystem: RenderingSystem {
 
         // Loop through all entites in the game
         for entity in game.entities {
+            
             // Make sure the entity has a material, otherwise move on
             guard let material = entity.component(ofType: MaterialComponent.self)?.material else {continue}
             
