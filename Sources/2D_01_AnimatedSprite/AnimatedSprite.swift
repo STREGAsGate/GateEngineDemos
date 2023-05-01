@@ -31,7 +31,7 @@ final class AnimatedSpriteGameDelegate: GameDelegate {
     // But this module has a different name then it's package. There is no way to obtain the package name at runtime.
     // So We need to tell GateEngine the resource bundle name for this project, if you plan to deploy to HTML5.
     func resourceSearchPaths() -> [URL] {
-        return [URL(string: "GateEngineDemos_3D_01_RotatingCube.resources")!]
+        return [URL(string: "GateEngineDemos_2D_01_AnimatedSprite.resources")!]
     }
     #endif
 }
@@ -97,7 +97,7 @@ class AnimatedSpriteSystem: System {
 class AnimatedSpriteRenderingSystem: RenderingSystem {
     
     // The window framebuffer cannot be resized, so we'll create a low resolution RenderTarget
-    // and draw out sprite into that then draw that into the window
+    // and draw our sprite into that then draw that into the window
     let renderTarget = RenderTarget()
     
     // render() is called only when drawing needs to be done
