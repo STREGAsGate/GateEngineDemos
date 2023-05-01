@@ -10,7 +10,10 @@ let package = Package(
         .package(url: "https://github.com/STREGAsGate/GateEngine.git", branch: "main"),
     ],
     targets: [
+        .executableTarget(name: "01_UserInput", dependencies: ["GateEngine"]),
+        
         .executableTarget(name: "2D_01_AnimatedSprite", dependencies: ["GateEngine"], resources: [.copy("Resources")]),
+    
         .executableTarget(name: "3D_01_RotatingCube", dependencies: ["GateEngine"]),
     ]
 )
