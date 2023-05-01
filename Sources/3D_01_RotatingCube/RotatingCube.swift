@@ -102,6 +102,9 @@ class RotatingCubeSystem: System {
             }
         }
     }
+    
+    // phase determines at which point the system should be updated relative to other systems
+    override class var phase: System.Phase {.simulation}
 }
 
 // RenderingSystem subclasses can draw content
