@@ -7,6 +7,7 @@
 
 // Sprite by https://gold356.itch.io/earh-rotating-32-x-32
 
+import Foundation
 import GateEngine
 
 @main

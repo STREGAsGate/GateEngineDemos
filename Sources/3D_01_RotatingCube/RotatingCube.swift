@@ -5,6 +5,7 @@
  * http://stregasgate.com
  */
 
+import Foundation
 import GateEngine
 
 @main
