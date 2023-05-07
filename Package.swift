@@ -12,6 +12,7 @@ let package = Package(
         .executable(name: "2D_01_AnimatedSprite", targets: ["2D_01_AnimatedSprite"]),
         
         .executable(name: "3D_01_RotatingCube", targets: ["3D_01_RotatingCube"]),
+        .executable(name: "3D_02_SkinnedCharacter", targets: ["3D_02_SkinnedCharacter"]),
     ],
     dependencies: [
         .package(url: "https://github.com/STREGAsGate/GateEngine.git", branch: "main"),
@@ -22,5 +23,6 @@ let package = Package(
         .executableTarget(name: "2D_01_AnimatedSprite", dependencies: ["GateEngine"], resources: [.copy("Resources")]),
     
         .executableTarget(name: "3D_01_RotatingCube", dependencies: ["GateEngine"]),
+        .executableTarget(name: "3D_02_SkinnedCharacter", dependencies: ["GateEngine"], resources: [.copy("Resources")]),
     ]
 )
