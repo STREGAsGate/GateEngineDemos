@@ -18,6 +18,8 @@ An animated sprite loaded from assets.
 3D
 1. [Rotating Cube](Sources/3D_01_RotatingCube/RotatingCube.swift): 
 A textured cube loaded from assets.
+2. [Skinned Character](Sources/3D_02_SkinnedCharacter/SkinnedCharacter.swift): 
+An animated character loaded from assets.
 
 # Support Gate Engine!
 If you appreciate this project, and want it to continue, then please consider putting some dollars into it.
