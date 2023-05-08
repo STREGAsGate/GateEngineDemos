@@ -42,7 +42,7 @@ class UserInputSystem: System {
     var inputRecipts = InputRecipts()
     
     // setup() is executed a single time when the System is added to the game
-    override func setup(game: Game) {
+    override func setup(game: Game, input: HID, layout: WindowLayout) {
         
         // Create an entity
         let entity = Entity()

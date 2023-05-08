@@ -41,7 +41,7 @@ final class AnimatedSpriteGameDelegate: GameDelegate {
 class AnimatedSpriteSystem: System {
     
     // setup() is executed a single time when the System is added to the game
-    override func setup(game: Game) {
+    override func setup(game: Game, input: HID, layout: WindowLayout) {
         
         // Create an entity with a name so we can easily find it later
         // Ideally you would find an entity based on it's components

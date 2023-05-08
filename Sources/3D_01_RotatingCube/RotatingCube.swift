@@ -52,7 +52,7 @@ final class RotatingCubeGameDelegate: GameDelegate {
 class RotatingCubeSystem: System {
     
     // setup() is executed a single time when the System is added to the game
-    override func setup(game: Game) {
+    override func setup(game: Game, input: HID, layout: WindowLayout) {
         
         // Create a new entity
         let cube = Entity()
