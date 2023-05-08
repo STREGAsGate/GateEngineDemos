@@ -3,7 +3,34 @@
 
 import PackageDescription
 
-let package = Package(
+let swiftSettings: [SwiftSetting] = {
+    var settings: [SwiftSetting] = []
+    #if os(Windows)
+    settings.append(contentsOf: [
+        // This is required on Windows due to a bug
+        // SR-12683 https://github.com/apple/swift/issues/55127
+        .unsafeFlags(["-parse-as-library"], .when(platforms: [.windows])),
+
+        // These flags tell Windows that the executable is UI based (shows a window) and hides the command prompt
+        .unsafeFlags(["-Xfrontend", "-entry-point-function-name"], .when(platforms: [.windows], configuration: .release)),    
+        .unsafeFlags(["-Xfrontend", "wWinMain"], .when(platforms: [.windows], configuration: .release)),
+    ])
+    #endif
+    return settings
+}()
+
+let linkerSettings: [LinkerSetting] = {
+    var settings: [LinkerSetting] = []
+    #if os(Windows)
+    settings.append(contentsOf: [
+        // These flags tell Windows that the executable is UI based (shows a window) and hides the command prompt
+        .unsafeFlags(["-Xlinker", "/SUBSYSTEM:WINDOWS"], .when(platforms: [.windows], configuration: .release)),
+    ])
+    #endif
+    return settings
+}()
+
+let package: Package = Package(
     name: "GateEngineDemos",
     platforms: [.macOS(.v11), .iOS(.v13), .tvOS(.v13)],
     products: [
@@ -18,11 +45,25 @@ let package = Package(
         .package(url: "https://github.com/STREGAsGate/GateEngine.git", branch: "main"),
     ],
     targets: [
-        .executableTarget(name: "01_UserInput", dependencies: ["GateEngine"]),
+        .executableTarget(name: "01_UserInput", 
+                          dependencies: ["GateEngine"], 
+                          swiftSettings: swiftSettings,
+                          linkerSettings: linkerSettings),
         
-        .executableTarget(name: "2D_01_AnimatedSprite", dependencies: ["GateEngine"], resources: [.copy("Resources")]),
+        .executableTarget(name: "2D_01_AnimatedSprite", 
+                          dependencies: ["GateEngine"], 
+                          resources: [.copy("Resources")], 
+                          swiftSettings: swiftSettings,
+                          linkerSettings: linkerSettings),
     
-        .executableTarget(name: "3D_01_RotatingCube", dependencies: ["GateEngine"]),
-        .executableTarget(name: "3D_02_SkinnedCharacter", dependencies: ["GateEngine"], resources: [.copy("Resources")]),
+        .executableTarget(name: "3D_01_RotatingCube", 
+                          dependencies: ["GateEngine"], 
+                          swiftSettings: swiftSettings,
+                          linkerSettings: linkerSettings),
+        .executableTarget(name: "3D_02_SkinnedCharacter", 
+                          dependencies: ["GateEngine"], 
+                          resources: [.copy("Resources")], 
+                          swiftSettings: swiftSettings,
+                          linkerSettings: linkerSettings),
     ]
 )
