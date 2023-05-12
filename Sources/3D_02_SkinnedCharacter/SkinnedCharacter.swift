@@ -39,6 +39,8 @@ final class SkinnedCharacterGameDelegate: GameDelegate {
         
         // Add the camera entity to the game
         game.insertEntity(camera)
+        
+        try! game.windowManager.createWindow(identifier: "two", style: .bestForGames)
     }
     
     #if os(WASI)
@@ -56,7 +58,7 @@ final class SkinnedCharacterGameDelegate: GameDelegate {
 class SkinnedCharacterSystem: System {
     
     // setup() is executed a single time when the System is added to the game
-    override func setup(game: Game, input: HID, layout: WindowLayout) {
+    override func setup(game: Game, input: HID) {
         
         // Create a new entity
         let character = Entity()
@@ -102,7 +104,7 @@ class SkinnedCharacterSystem: System {
     }
     
     // update() is executed every simulation tick, which may or may not be every frame
-    override func update(game: Game, input: HID, layout: WindowLayout, withTimePassed deltaTime: Float) {
+    override func update(game: Game, input: HID, withTimePassed deltaTime: Float) {
         
         // Loop through all entites in the game
         for entity in game.entities {
@@ -129,7 +131,7 @@ class SkinnedCharacterSystem: System {
 class SkinnedCharacterRenderingSystem: RenderingSystem {
     
     // render() is called only wehn drawing needs to be done
-    override func render(game: Game, framebuffer: RenderTarget, layout: WindowLayout, withTimePassed deltaTime: Float) {
+    override func render(game: Game, window: Window, withTimePassed deltaTime: Float) {
         
         // To draw something in GateEngine you must create a container to store the renderable objects
         // A Scene is a container for 3D renderable objects and it requires a Camera
@@ -144,8 +146,14 @@ class SkinnedCharacterRenderingSystem: RenderingSystem {
         for entity in game.entities {
             
             // Make sure the entity has a material, otherwise move on
-            guard let material = entity.component(ofType: MaterialComponent.self)?.material else {continue}
-            
+            guard var material = entity.component(ofType: MaterialComponent.self)?.material else {continue}
+            if window.identifier != "main" {
+                material.channel(0) { channel in
+                    channel.texture = nil
+                    channel.color = .lightGreen
+                }
+                material.fragmentShader = SystemShaders.materialColorFragmentShader
+            }
             // Make sure the entity has a rig and get it's current pose, otherwise move on
             // A Pose is the state of a skeleton at it's current animation frame
             guard let pose = entity.component(ofType: RigComponent.self)?.skeleton.getPose() else {continue}
@@ -161,6 +169,6 @@ class SkinnedCharacterRenderingSystem: RenderingSystem {
         
         // A framebuffer is a RenderTarget that represents the window
         // The frameBuffer will automatically draw the scene
-        framebuffer.insert(scene)
+        window.insert(scene)
     }
 }

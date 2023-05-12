@@ -41,7 +41,7 @@ final class AnimatedSpriteGameDelegate: GameDelegate {
 class AnimatedSpriteSystem: System {
     
     // setup() is executed a single time when the System is added to the game
-    override func setup(game: Game, input: HID, layout: WindowLayout) {
+    override func setup(game: Game, input: HID) {
         
         // Create an entity with a name so we can easily find it later
         // Ideally you would find an entity based on it's components
@@ -67,7 +67,7 @@ class AnimatedSpriteSystem: System {
     }
     
     // update() is executed every simulation tick, which may or may not be every frame
-    override func update(game: Game, input: HID, layout: WindowLayout, withTimePassed deltaTime: Float) {
+    override func update(game: Game, input: HID, withTimePassed deltaTime: Float) {
         
         // Get the sprite we named from the game
         if let entity = game.entity(named: "Spinning Earth") {
@@ -79,7 +79,9 @@ class AnimatedSpriteSystem: System {
                 let halfVerticalHeight: Float = 144 / 2
                 
                 // determine the horizontal position using the aspect ratio of the window
-                component.position.x = halfVerticalHeight * layout.windowSize.aspectRatio
+                if let mainWindow = game.windowManager.mainWindow {
+                    component.position.x = halfVerticalHeight * mainWindow.size.aspectRatio
+                }
                 
                 // we chose the vertical resoluton so we know where vertical center is
                 component.position.y = halfVerticalHeight
@@ -102,10 +104,10 @@ class AnimatedSpriteRenderingSystem: RenderingSystem {
     let renderTarget = RenderTarget()
     
     // render() is called only when drawing needs to be done
-    override func render(game: Game, framebuffer: RenderTarget, layout: WindowLayout, withTimePassed deltaTime: Float) {
+    override func render(game: Game, window: Window, withTimePassed deltaTime: Float) {
         
         // Set the framebuffer to GameBoy resolution and use the windows aspect ratio to get an appropriate width
-        renderTarget.size = Size2(144 * layout.windowSize.aspectRatio, 144)
+        renderTarget.size = Size2(144 * window.size.aspectRatio, 144)
         
         // A Canvas is a drawing container for 2D objects
         // Canvas is light weight and you're meant to create a new one every frame
@@ -131,6 +133,6 @@ class AnimatedSpriteRenderingSystem: RenderingSystem {
         renderTarget.insert(canvas)
         
         // Draw the renderTarget into the window, sampling nearest so it's not blurry
-        framebuffer.insert(renderTarget, sampleFilter: .nearest)
+        window.insert(renderTarget, sampleFilter: .nearest)
     }
 }

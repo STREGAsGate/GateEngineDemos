@@ -42,7 +42,7 @@ class UserInputSystem: System {
     var inputRecipts = InputRecipts()
     
     // setup() is executed a single time when the System is added to the game
-    override func setup(game: Game, input: HID, layout: WindowLayout) {
+    override func setup(game: Game, input: HID) {
         
         // Create an entity
         let entity = Entity()
@@ -55,7 +55,7 @@ class UserInputSystem: System {
     }
     
     // update() is executed every simulation tick, which may or may not be every frame
-    override func update(game: Game, input: HID, layout: WindowLayout, withTimePassed deltaTime: Float) {
+    override func update(game: Game, input: HID, withTimePassed deltaTime: Float) {
         
         // Get the entity from the game
         if let entity = game.firstEntity(withComponent: TextComponent.self) {
@@ -147,7 +147,7 @@ class UserInputSystem: System {
 class TextRenderingSystem: RenderingSystem {
 
     // render() is called only when drawing needs to be done
-    override func render(game: Game, framebuffer: RenderTarget, layout: WindowLayout, withTimePassed deltaTime: Float) {
+    override func render(game: Game, window: Window, withTimePassed deltaTime: Float) {
         
         // A Canvas is a drawing container for 2D objects
         // Canvas is light weight and you're meant to create a new one every frame
@@ -160,7 +160,7 @@ class TextRenderingSystem: RenderingSystem {
             guard let text = entity.component(ofType: TextComponent.self)?.text else {continue}
             
             // Create a Rect the size of the window and get it's center
-            let windowCenter = Rect(size: layout.windowSize).center
+            let windowCenter = Rect(size: window.size).center
             
             // Half of the rendered text size
             let halfTextSize = text.size / 2
@@ -174,6 +174,6 @@ class TextRenderingSystem: RenderingSystem {
         }
         
         // Add the canvas to the framebuffer to be drawn
-        framebuffer.insert(canvas)
+        window.insert(canvas)
     }
 }
