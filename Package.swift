@@ -42,7 +42,7 @@ let package: Package = Package(
         .executable(name: "3D_02_SkinnedCharacter", targets: ["3D_02_SkinnedCharacter"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/STREGAsGate/GateEngine.git", branch: "main"),
+        .package(url: "https://github.com/STREGAsGate/GateEngine.git", .upToNextMajor(from: "0.0.1"))
     ],
     targets: [
         .executableTarget(name: "01_UserInput", 
