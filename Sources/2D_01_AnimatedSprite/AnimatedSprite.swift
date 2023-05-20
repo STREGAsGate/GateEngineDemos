@@ -24,6 +24,9 @@ final class AnimatedSpriteGameDelegate: GameDelegate {
         
         // Add the projects rendering system to the game which implementation is below
         game.insertSystem(AnimatedSpriteRenderingSystem.self)
+        
+        // Set the main window's title
+        game.windowManager.mainWindow?.title = "Animated Sprite"
     }
     
     #if os(WASI)
@@ -101,7 +104,7 @@ class AnimatedSpriteRenderingSystem: RenderingSystem {
     
     // The window framebuffer cannot be resized, so we'll create a low resolution RenderTarget
     // and draw our sprite into that then draw that into the window
-    let renderTarget = RenderTarget()
+    lazy var renderTarget = RenderTarget()
     
     // render() is called only when drawing needs to be done
     override func render(game: Game, window: Window, withTimePassed deltaTime: Float) {

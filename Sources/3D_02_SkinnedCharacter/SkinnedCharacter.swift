@@ -40,7 +40,8 @@ final class SkinnedCharacterGameDelegate: GameDelegate {
         // Add the camera entity to the game
         game.insertEntity(camera)
         
-        try! game.windowManager.createWindow(identifier: "two", style: .bestForGames)
+        // Set the main window's title
+        game.windowManager.mainWindow?.title = "Skinned Character"
     }
     
     #if os(WASI)
@@ -71,7 +72,7 @@ class SkinnedCharacterSystem: System {
         }
         
         // Give the entity rig
-        character.configure(RigComponent.self) { component in
+        character.configure(Rig3DComponent.self) { component in
             
             // Load the characters skeleton from the characters source file
             component.skeleton = try! await Skeleton(path: "Resources/Cat.glb")
@@ -81,7 +82,7 @@ class SkinnedCharacterSystem: System {
             component.animationSet = animations
             
             // Convert the first skeletal animation into a repeating rig animation
-            component.activeAnimation = RigComponent.Animation(animations[0], repeats: true)
+            component.activeAnimation = Rig3DComponent.Animation(animations[0], repeats: true)
         }
         
         // Give the entity 3D geometry
@@ -156,7 +157,7 @@ class SkinnedCharacterRenderingSystem: RenderingSystem {
             }
             // Make sure the entity has a rig and get it's current pose, otherwise move on
             // A Pose is the state of a skeleton at it's current animation frame
-            guard let pose = entity.component(ofType: RigComponent.self)?.skeleton.getPose() else {continue}
+            guard let pose = entity.component(ofType: Rig3DComponent.self)?.skeleton.getPose() else {continue}
             
             // Make sure the entity has a 3D transform, otherwise move on
             guard let transform = entity.component(ofType: Transform3Component.self)?.transform else {continue}

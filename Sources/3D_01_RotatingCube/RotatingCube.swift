@@ -35,6 +35,9 @@ final class RotatingCubeGameDelegate: GameDelegate {
         
         // Add the camera entity to the game
         game.insertEntity(camera)
+        
+        // Set the main window's title
+        game.windowManager.mainWindow?.title = "Rotating Cube"
     }
     
     #if os(WASI)

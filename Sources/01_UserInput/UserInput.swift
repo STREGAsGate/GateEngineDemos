@@ -18,6 +18,9 @@ final class UserInputGameDelegate: GameDelegate {
         
         // Add the projects rendering system to the game which implementation is below
         game.insertSystem(TextRenderingSystem.self)
+        
+        // Set the main window's title
+        game.windowManager.mainWindow?.title = "User Input"
     }
 }
 
