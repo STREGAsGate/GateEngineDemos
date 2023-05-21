@@ -39,16 +39,6 @@ final class RotatingCubeGameDelegate: GameDelegate {
         // Set the main window's title
         game.windowManager.mainWindow?.title = "Rotating Cube"
     }
-    
-    #if os(WASI)
-    // GateEngine automatically searches for resources on most platforms, however...
-    // HTML5 can't search becuase its a website. GateEngine will automatically search "ModuleName_ModuleName.resources".
-    // But this module has a different name then it's package. There is no way to obtain the package name at runtime.
-    // So We need to tell GateEngine the resource bundle name for this project, if you plan to deploy to HTML5.
-    func resourceSearchPaths() -> [URL] {
-        return [URL(string: "GateEngineDemos_3D_01_RotatingCube.resources")!]
-    }
-    #endif
 }
 
 // System subclasses are used to manipulate the simulation. They can't be used to draw content.
@@ -70,7 +60,7 @@ class RotatingCubeSystem: System {
         // Give the entity 3D geometry
         cube.configure(RenderingGeometryComponent.self) { component in
             // Load the engine provided unit cube. A unit cube is 1x1x1 units
-            component.geometry = Geometry(path: "GateEngine/Primitives/Unit Cube.obj")
+            component.geometry = Geometry(as: .unitCube)
         }
         
         // Give the entity a material
@@ -78,7 +68,7 @@ class RotatingCubeSystem: System {
             // Begin modifying material channel zero
             material.channel(0) { channel in
                 // Load the engine provided placeholder texture
-                channel.texture = Texture(path: "GateEngine/Textures/CheckerPattern.png")
+                channel.texture = Texture(as: .checkerPattern)
             }
         }
         

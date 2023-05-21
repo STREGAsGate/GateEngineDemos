@@ -42,16 +42,6 @@ final class MousePickingGameDelegate: GameDelegate {
         // Set the main window's title
         game.windowManager.mainWindow?.title = "Mouse Picking"
     }
-    
-    #if os(WASI)
-    // GateEngine automatically searches for resources on most platforms, however...
-    // HTML5 can't search becuase its a website. GateEngine will automatically search "ModuleName_ModuleName.resources".
-    // But this module has a different name then it's package. There is no way to obtain the package name at runtime.
-    // So We need to tell GateEngine the resource bundle name for this project, if you plan to deploy to HTML5.
-    func resourceSearchPaths() -> [URL] {
-        return [URL(string: "GateEngineDemos_3D_03_MousePicking.resources")!]
-    }
-    #endif
 }
 
 // System subclasses are used to manipulate the simulation. They can't be used to draw content.
@@ -79,21 +69,21 @@ class WorldSystem: System {
             
             // Add a Collision3DComponent
             cube.configure(Collision3DComponent.self) { component in
-                // Since we are using a cube we only need the non-optional primitiveCollider
-                // primitiveCollider is always an AxisAlignedBoundingBox and should fully contain an object
-                // Set the primitiveCollider radius to half our unit cube to cover the whole cube
+                // Since we are using a cube we only need the primitiveCollider.
+                // primitiveCollider is always an AxisAlignedBoundingBox and should fully contain an object.
+                // Set the primitiveCollider radius to half our unit cube, which will cover the whole cube.
                 component.primitiveCollider.update(radius: Size3(0.5))
             }
             
             // Give the entity 3D geometry
             cube.configure(RenderingGeometryComponent.self) { component in
-                // Load the engine provided unit cube. A unit cube is 1x1x1 units
-                component.geometry = Geometry(path: "GateEngine/Primitives/Unit Cube.obj")
+                // Load the engine provided unit cube. A unit cube is 1x1x1 units.
+                component.geometry = Geometry(as: .unitCube)
             }
             
             cube.configure(MaterialComponent.self) { component in
-                // Use the system sahder that renderers channel.color
-                component.fragmentShader = .materialColorFragmentShader
+                // Use the system shader that renderers channel.color
+                component.fragmentShader = .materialColor
                 component.channel(0) { channel in
                     // Give this a cube a random color
                     channel.color = [.lightRed, .lightGreen, .lightBlue].randomElement()!
