@@ -43,7 +43,7 @@ let package: Package = Package(
         .executable(name: "3D_03_MousePicking", targets: ["3D_03_MousePicking"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/STREGAsGate/GateEngine.git", .upToNextMajor(from: "0.0.1"))
+        .package(url: "https://github.com/STREGAsGate/GateEngine.git", branch: "main")
     ],
     targets: [
         .executableTarget(name: "01_UserInput", 
