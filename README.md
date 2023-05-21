@@ -20,6 +20,8 @@ An animated sprite loaded from assets.
 A textured cube loaded from assets.
 2. [Skinned Character](Sources/3D_02_SkinnedCharacter/SkinnedCharacter.swift): 
 An animated character loaded from assets.
+3. [Mouse Picking](Sources/3D_03_MousePicking/MousePicking.swift): 
+Changes the color of an object under the mouse cursor.
 
 # Support Gate Engine!
 If you appreciate this project, and want it to continue, then please consider putting some dollars into it.

@@ -148,13 +148,7 @@ class SkinnedCharacterRenderingSystem: RenderingSystem {
             
             // Make sure the entity has a material, otherwise move on
             guard var material = entity.component(ofType: MaterialComponent.self)?.material else {continue}
-            if window.identifier != "main" {
-                material.channel(0) { channel in
-                    channel.texture = nil
-                    channel.color = .lightGreen
-                }
-                material.fragmentShader = SystemShaders.materialColorFragmentShader
-            }
+
             // Make sure the entity has a rig and get it's current pose, otherwise move on
             // A Pose is the state of a skeleton at it's current animation frame
             guard let pose = entity.component(ofType: Rig3DComponent.self)?.skeleton.getPose() else {continue}
