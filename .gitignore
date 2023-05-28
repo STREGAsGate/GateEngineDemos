@@ -22,4 +22,4 @@ Package.resolved
 .idea
 
 #Blender
-.blend1
+*.blend1

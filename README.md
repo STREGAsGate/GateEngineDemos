@@ -22,6 +22,8 @@ A textured cube loaded from assets.
 An animated character loaded from assets.
 3. [Mouse Picking](Sources/3D_03_MousePicking/MousePicking.swift): 
 Changes the color of an object under the mouse cursor.
+* [First Person](Sources/3D_FirstPerson/FirstPerson.swift): 
+Move around a level with mouse and keyboard controls.
 
 # Support Gate Engine!
 If you appreciate this project, and want it to continue, then please consider putting some dollars into it.

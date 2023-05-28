@@ -41,6 +41,7 @@ let package: Package = Package(
         .executable(name: "3D_01_RotatingCube", targets: ["3D_01_RotatingCube"]),
         .executable(name: "3D_02_SkinnedCharacter", targets: ["3D_02_SkinnedCharacter"]),
         .executable(name: "3D_03_MousePicking", targets: ["3D_03_MousePicking"]),
+        .executable(name: "3D_FirstPerson", targets: ["3D_FirstPerson"]),
     ],
     dependencies: [
         .package(url: "https://github.com/STREGAsGate/GateEngine.git", branch: "main")
@@ -68,6 +69,11 @@ let package: Package = Package(
                           linkerSettings: linkerSettings),
         .executableTarget(name: "3D_03_MousePicking",
                           dependencies: ["GateEngine"],
+                          swiftSettings: swiftSettings,
+                          linkerSettings: linkerSettings),
+        .executableTarget(name: "3D_FirstPerson",
+                          dependencies: ["GateEngine"],
+                          resources: [.copy("Resources")],
                           swiftSettings: swiftSettings,
                           linkerSettings: linkerSettings),
     ]

@@ -32,7 +32,7 @@ final class MousePickingGameDelegate: GameDelegate {
         // Unwrap a Transform3Component
         camera.configure(Transform3Component.self) { component in
             
-            // Move the camera backward, relative to it's rotation, by 5 units
+            // Move the camera backward, relative to it's rotation
             component.position.move(15, toward: component.rotation.backward)
         }
         
@@ -50,7 +50,7 @@ class WorldSystem: System {
     // setup() is executed a single time when the System is added to the game
     override func setup(game: Game, input: HID) {
         
-        // Add 32 cubes at random locations
+        // Add 128 cubes at random locations
         for _ in 0 ..< 128 {
             // Create am entity for this cube
             let cube = Entity()
@@ -69,10 +69,8 @@ class WorldSystem: System {
             
             // Add a Collision3DComponent
             cube.configure(Collision3DComponent.self) { component in
-                // Since we are using a cube we only need the primitiveCollider.
-                // primitiveCollider is always an AxisAlignedBoundingBox and should fully contain an object.
-                // Set the primitiveCollider radius to half our unit cube, which will cover the whole cube.
-                component.primitiveCollider.update(radius: Size3(0.5))
+                // Set the collider radius to half our unit cube, which will cover the whole cube.
+                component.collider = AxisAlignedBoundingBox3D(radius: Size3(0.5))
             }
             
             // Give the entity 3D geometry
