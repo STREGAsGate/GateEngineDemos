@@ -77,16 +77,16 @@ class UserInputSystem: System {
                     // For example on DualShock south is .cross, and on Xbox south is .A
                     // Symbols for console gamepads are guaranteed, otherwise GateEngine will guess
                     // based on the host OS and the physical gampad's manufacturer name
-                    component.text.string = "\(input.gamePads.any.button.north.symbol) pressed!"
+                    component.text.string += "\n\(input.gamePads.any.button.north.symbol) pressed!"
                 }
                 if input.gamePads.any.button.south.isPressed(ifDifferent: &inputRecipts) {
-                    component.text.string = "\(input.gamePads.any.button.south.symbol) pressed!"
+                    component.text.string += "\n\(input.gamePads.any.button.south.symbol) pressed!"
                 }
                 if input.gamePads.any.button.east.isPressed(ifDifferent: &inputRecipts) {
-                    component.text.string = "\(input.gamePads.any.button.east.symbol) pressed!"
+                    component.text.string += "\n\(input.gamePads.any.button.east.symbol) pressed!"
                 }
                 if input.gamePads.any.button.west.isPressed(ifDifferent: &inputRecipts) {
-                    component.text.string = "\(input.gamePads.any.button.west.symbol) pressed!"
+                    component.text.string += "\n\(input.gamePads.any.button.west.symbol) pressed!"
                 }
                 
                 
@@ -94,36 +94,36 @@ class UserInputSystem: System {
                 
                 // Keyboard checks work similar to gamepad buttons, see above
                 if input.keyboard.button("w").isPressed(ifDifferent: &inputRecipts) {
-                    component.text.string = "W pressed!"
+                    component.text.string += "\nW pressed!"
+                }else if input.keyboard.button("s").isPressed(ifDifferent: &inputRecipts) {
+                    component.text.string += "\nS pressed!"
+                }else if input.keyboard.button("a").isPressed(ifDifferent: &inputRecipts) {
+                    component.text.string += "\nA pressed!"
+                }else if input.keyboard.button("d").isPressed(ifDifferent: &inputRecipts) {
+                    component.text.string += "\nD pressed!"
+                }else if let button = input.keyboard.pressedButtons().first?.value {
+                    if button.isPressed(ifDifferent: &inputRecipts) {
+                        component.text.string += "\n\(button) pressed!"
+                    }
                 }
-                if input.keyboard.button("s").isPressed(ifDifferent: &inputRecipts) {
-                    component.text.string = "S pressed!"
-                }
-                if input.keyboard.button("a").isPressed(ifDifferent: &inputRecipts) {
-                    component.text.string = "A pressed!"
-                }
-                if input.keyboard.button("d").isPressed(ifDifferent: &inputRecipts) {
-                    component.text.string = "D pressed!"
-                }
-                if input.keyboard.button(.up).isPressed(ifDifferent: &inputRecipts) {
-                    component.text.string = "Up Arrow pressed!"
-                }
-                if input.keyboard.button(.down).isPressed(ifDifferent: &inputRecipts) {
-                    component.text.string = "Down Arrow pressed!"
-                }
-                if input.keyboard.button(.left).isPressed(ifDifferent: &inputRecipts) {
-                    component.text.string = "Left Arrow pressed!"
-                }
-                if input.keyboard.button(.right).isPressed(ifDifferent: &inputRecipts) {
-                    component.text.string = "Right Arrow pressed!"
-                }
-                
                 
                 // MARK: - Mouse
                 
                 // Mouse buttons work similar to gamepad buttons, see above
                 if input.mouse.button(.button1).isPressed(ifDifferent: &inputRecipts) {
-                    component.text.string = String(format: "Primary Click at x: %.0f, y: %.0f", input.mouse.position!.x, input.mouse.position!.y)
+                    component.text.string += String(format: "\nPrimary Click at x: %.0f, y: %.0f", input.mouse.position!.x, input.mouse.position!.y)
+                }
+                if input.mouse.button(.button2).isPressed(ifDifferent: &inputRecipts) {
+                    component.text.string += String(format: "\nSecondary Click at x: %.0f, y: %.0f", input.mouse.position!.x, input.mouse.position!.y)
+                }
+                if input.mouse.button(.button3).isPressed(ifDifferent: &inputRecipts) {
+                    component.text.string += String(format: "\nButton 3 Click at x: %.0f, y: %.0f", input.mouse.position!.x, input.mouse.position!.y)
+                }
+                if input.mouse.button(.button4).isPressed(ifDifferent: &inputRecipts) {
+                    component.text.string += String(format: "\nButton 4 Click at x: %.0f, y: %.0f", input.mouse.position!.x, input.mouse.position!.y)
+                }
+                if input.mouse.button(.button5).isPressed(ifDifferent: &inputRecipts) {
+                    component.text.string += String(format: "\nButton 5 Click at x: %.0f, y: %.0f", input.mouse.position!.x, input.mouse.position!.y)
                 }
                 
                 
@@ -133,8 +133,18 @@ class UserInputSystem: System {
                 // as the user will expect certain things like screens to be pixel perfect and trackpads to be relative.
                 // A Touch.phase is valid for this update only. The .up phase is available exactly once before the Touch is removed, so be sure to check the phase every frame.
                 if let touch = input.screen.touches.first(where: {$0.phase == .up}) {
-                    component.text.string = String(format: "(\(touch.kind)) Touch Up at x: %.3f, y: %.3f", touch.position.x, touch.position.y)
+                    component.text.string += String(format: "\nScreen Touch Up at x: %.3f, y: %.3f", touch.position.x, touch.position.y)
                 }
+                
+                if let touch = input.surfaces.any?.touches.first(where: {$0.phase == .up}) {
+                    component.text.string += String(format: "\nSurface Touch Up at x: %.3f, y: %.3f", touch.position.x, touch.position.y)
+                }
+                
+                var components = component.text.string.components(separatedBy: "\n")
+                while components.count > 5 {
+                    components.remove(at: 0)
+                }
+                component.text.string = components.joined(separator: "\n")
             }
         }
     }
