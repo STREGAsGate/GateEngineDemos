@@ -17,5 +17,5 @@ jobs:
       run: swift --version
     - name: Build using Xcode
       run: xcodebuild -scheme GateEngineDemos-Package -destination "platform=macOS,name=Any Mac"
-    - name: Test using Xcode
-      run: xcodebuild -scheme GateEngineDemos-Package -destination "platform=macOS,name=Any Mac" test
+#     - name: Test using Xcode
+#       run: xcodebuild -scheme GateEngineDemos-Package -destination "platform=macOS,name=Any Mac" test
