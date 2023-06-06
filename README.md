@@ -1,6 +1,8 @@
 # Gate Engine Demoes
 Example projects for [GateEngine](https://github.com/STREGAsGate/GateEngine), a cross platform game engine for Swift developers.
 
+[![CI](https://github.com/STREGAsGate/GateEngineDemos/actions/workflows/ci.yml/badge.svg)](https://github.com/STREGAsGate/GateEngineDemos/actions/workflows/ci.yml)
+
 ## Navigating this Package
 Projects are organized as their own executable.
 Each project is a single swift source file.</br>

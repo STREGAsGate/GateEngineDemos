@@ -152,7 +152,7 @@ class PlayerControllerSystem: System {
                     input.mouse.locked = true
                 }
             }
-        }else if input.keyboard.button(.escape).isPressed {
+        }else if input.keyboard.button(.escape)!.isPressed {
             // If the mouse is hidden and the user pressed escape on the keyboard then unhide the mouse
             input.mouse.hidden = false
             input.mouse.locked = false
@@ -205,16 +205,16 @@ class PlayerControllerSystem: System {
         })
         
         // Move the player based on keyboard presses
-        if input.keyboard.button("w").isPressed || input.keyboard.button(.up).isPressed {
+        if input.keyboard.button("w")!.isPressed || input.keyboard.button(.up)!.isPressed {
             playerTransform.position += Size3(playerTransform.rotation.forward) * deltaTime * 5
         }
-        if input.keyboard.button("s").isPressed || input.keyboard.button(.down).isPressed {
+        if input.keyboard.button("s")!.isPressed || input.keyboard.button(.down)!.isPressed {
             playerTransform.position += Size3(playerTransform.rotation.backward) * deltaTime * 5
         }
-        if input.keyboard.button("a").isPressed || input.keyboard.button(.left).isPressed {
+        if input.keyboard.button("a")!.isPressed || input.keyboard.button(.left)!.isPressed {
             playerTransform.position += Size3(playerTransform.rotation.left) * deltaTime * 5
         }
-        if input.keyboard.button("d").isPressed || input.keyboard.button(.right).isPressed {
+        if input.keyboard.button("d")!.isPressed || input.keyboard.button(.right)!.isPressed {
             playerTransform.position += Size3(playerTransform.rotation.right) * deltaTime * 5
         }
         

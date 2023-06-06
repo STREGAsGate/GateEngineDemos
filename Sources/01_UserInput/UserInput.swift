@@ -101,7 +101,7 @@ class UserInputSystem: System {
                     component.text.string += "\nA pressed!"
                 }else if input.keyboard.button("d")?.isPressed(ifDifferent: &inputRecipts) == true {
                     component.text.string += "\nD pressed!"
-                }else if let button = input.keyboard.pressedButtons().first?.value {
+                }else if let button = input.keyboard.pressedButtons().first?.button {
                     if button.isPressed(ifDifferent: &inputRecipts) {
                         component.text.string += "\n\(button) pressed!"
                     }
