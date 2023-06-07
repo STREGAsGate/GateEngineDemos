@@ -396,6 +396,7 @@
 		5677A8632A27999F00BD0456 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				DEVELOPMENT_TEAM = 8TX6RJQV9M;
 			};
@@ -404,6 +405,7 @@
 		5677A8642A27999F00BD0456 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				DEVELOPMENT_TEAM = 8TX6RJQV9M;
 			};
@@ -412,6 +414,7 @@
 		56D155532A2A490200FDB7AC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				DEVELOPMENT_TEAM = 8TX6RJQV9M;
 			};
@@ -420,6 +423,7 @@
 		56D155542A2A490200FDB7AC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				DEVELOPMENT_TEAM = 8TX6RJQV9M;
 			};

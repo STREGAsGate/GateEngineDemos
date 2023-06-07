@@ -55,7 +55,7 @@ class LevelLoadingSystem: System {
     let level = Entity()
     
     // setup() is executed a single time when the System is added to the game
-    override func setup(game: Game, input: HID) {
+    override func setup(game: Game, input: HID) async {
         
         // Give the level a transform
         level.insert(Transform3Component.self)
@@ -88,7 +88,7 @@ class LevelLoadingSystem: System {
     }
     
     // update() is executed every simulation tick, which may or may not be every frame
-    override func update(game: Game, input: HID, withTimePassed deltaTime: Float) {
+    override func update(game: Game, input: HID, withTimePassed deltaTime: Float) async {
         // The OctreeComponent was configured asynchronous. It's done loading when it's on the entity
         if level.hasComponent(OctreeComponent.self) {
             // Remove the level system as we used it for loading only
@@ -110,7 +110,7 @@ class PlayerControllerSystem: System {
     var xAngle: Degrees = .zero
     
     // setup() is executed a single time when the System is added to the game
-    override func setup(game: Game, input: HID) {
+    override func setup(game: Game, input: HID) async {
         // Create an entity for the player
         let player = Entity(name: "Player")
                 
@@ -143,7 +143,7 @@ class PlayerControllerSystem: System {
     }
     
     // shouldUpdate() is executed immediatley before update(), and determines if update() is skipped
-    override func shouldUpdate(game: Game, input: HID, withTimePassed deltaTime: Float) -> Bool {
+    override func shouldUpdate(game: Game, input: HID, withTimePassed deltaTime: Float) async -> Bool {
         if input.mouse.hidden == false {
             if input.mouse.button(.button1).isPressed {
                 if input.mouse.position?.y ?? 0 > 30 {
@@ -163,7 +163,7 @@ class PlayerControllerSystem: System {
     }
     
     // update() is executed every simulation tick, which may or may not be every frame
-    override func update(game: Game, input: HID, withTimePassed deltaTime: Float) {
+    override func update(game: Game, input: HID, withTimePassed deltaTime: Float) async {
         // Find the player entity
         guard let player = game.entity(named: "Player") else {return}
         // Unwrap the player transform

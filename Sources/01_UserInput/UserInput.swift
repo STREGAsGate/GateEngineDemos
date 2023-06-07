@@ -45,7 +45,7 @@ class UserInputSystem: System {
     var inputRecipts = InputRecipts()
     
     // setup() is executed a single time when the System is added to the game
-    override func setup(game: Game, input: HID) {
+    override func setup(game: Game, input: HID) async {
         
         // Create an entity
         let entity = Entity()
@@ -58,7 +58,7 @@ class UserInputSystem: System {
     }
     
     // update() is executed every simulation tick, which may or may not be every frame
-    override func update(game: Game, input: HID, withTimePassed deltaTime: Float) {
+    override func update(game: Game, input: HID, withTimePassed deltaTime: Float) async {
         
         // Get the entity from the game
         if let entity = game.firstEntity(withComponent: TextComponent.self) {

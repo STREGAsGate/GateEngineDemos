@@ -45,7 +45,7 @@ final class RotatingCubeGameDelegate: GameDelegate {
 class RotatingCubeSystem: System {
     
     // setup() is executed a single time when the System is added to the game
-    override func setup(game: Game, input: HID) {
+    override func setup(game: Game, input: HID) async {
         
         // Create a new entity
         let cube = Entity()
@@ -77,7 +77,7 @@ class RotatingCubeSystem: System {
     }
     
     // update() is executed every simulation tick, which may or may not be every frame
-    override func update(game: Game, input: HID, withTimePassed deltaTime: Float) {
+    override func update(game: Game, input: HID, withTimePassed deltaTime: Float) async {
         
         // Loop through all entites in the game
         for entity in game.entities {

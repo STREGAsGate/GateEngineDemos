@@ -44,7 +44,7 @@ final class AnimatedSpriteGameDelegate: GameDelegate {
 class AnimatedSpriteSystem: System {
     
     // setup() is executed a single time when the System is added to the game
-    override func setup(game: Game, input: HID) {
+    override func setup(game: Game, input: HID) async {
         
         // Create an entity with a name so we can easily find it later
         // Ideally you would find an entity based on it's components
@@ -70,7 +70,7 @@ class AnimatedSpriteSystem: System {
     }
     
     // update() is executed every simulation tick, which may or may not be every frame
-    override func update(game: Game, input: HID, withTimePassed deltaTime: Float) {
+    override func update(game: Game, input: HID, withTimePassed deltaTime: Float) async {
         
         // Get the sprite we named from the game
         if let entity = game.entity(named: "Spinning Earth") {

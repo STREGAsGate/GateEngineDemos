@@ -48,7 +48,7 @@ final class MousePickingGameDelegate: GameDelegate {
 class WorldSystem: System {
     
     // setup() is executed a single time when the System is added to the game
-    override func setup(game: Game, input: HID) {
+    override func setup(game: Game, input: HID) async {
         
         // Add 128 cubes at random locations
         for _ in 0 ..< 128 {
@@ -94,7 +94,7 @@ class WorldSystem: System {
     }
     
     // update() is executed every simulation tick, which may or may not be every frame
-    override func update(game: Game, input: HID, withTimePassed deltaTime: Float) {
+    override func update(game: Game, input: HID, withTimePassed deltaTime: Float) async {
         // Make sure the mainWindow exists
         guard let window = game.windowManager.mainWindow else {return}
         // Create a camera from the cameraEntity for our Canvas later
