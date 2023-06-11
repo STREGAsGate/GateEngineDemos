@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		5677A85B2A27999F00BD0456 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5677A85A2A27999F00BD0456 /* Assets.xcassets */; };
 		5677A86B2A279C6400BD0456 /* GateEngine in Frameworks */ = {isa = PBXBuildFile; productRef = 5677A86A2A279C6300BD0456 /* GateEngine */; };
+		569C5E5F2A32C58C009CC52B /* GateEngine in Frameworks */ = {isa = PBXBuildFile; productRef = 569C5E5A2A32C58C009CC52B /* GateEngine */; };
+		569C5E612A32C58C009CC52B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5677A85A2A27999F00BD0456 /* Assets.xcassets */; };
+		569C5E672A32C5A2009CC52B /* MultipleWindows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569C5E662A32C5A2009CC52B /* MultipleWindows.swift */; };
 		56D1554F2A2A490200FDB7AC /* GateEngine in Frameworks */ = {isa = PBXBuildFile; productRef = 56D1554A2A2A490200FDB7AC /* GateEngine */; };
 		56D155512A2A490200FDB7AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5677A85A2A27999F00BD0456 /* Assets.xcassets */; };
 		56D155562A2A491700FDB7AC /* UserInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5677A8652A279C1000BD0456 /* UserInput.swift */; };
@@ -21,6 +24,8 @@
 		5677A85A2A27999F00BD0456 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5677A8652A279C1000BD0456 /* UserInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserInput.swift; path = ../../Sources/01_UserInput/UserInput.swift; sourceTree = "<group>"; };
 		5677A8682A279C4200BD0456 /* GateEngineDemos */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = GateEngineDemos; path = ..; sourceTree = "<group>"; };
+		569C5E652A32C58C009CC52B /* 02_MultipleWindows.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 02_MultipleWindows.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		569C5E662A32C5A2009CC52B /* MultipleWindows.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MultipleWindows.swift; path = ../../Sources/02_MultipleWindows/MultipleWindows.swift; sourceTree = "<group>"; };
 		56D155552A2A490200FDB7AC /* 2D_01_AnimatedSprite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 2D_01_AnimatedSprite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56D155572A2A492B00FDB7AC /* AnimatedSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnimatedSprite.swift; path = ../Sources/2D_01_AnimatedSprite/AnimatedSprite.swift; sourceTree = "<group>"; };
 		56D155592A2A493500FDB7AC /* Resources */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Resources; path = ../Sources/2D_01_AnimatedSprite/Resources; sourceTree = "<group>"; };
@@ -32,6 +37,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				5677A86B2A279C6400BD0456 /* GateEngine in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		569C5E5E2A32C58C009CC52B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				569C5E5F2A32C58C009CC52B /* GateEngine in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,6 +64,7 @@
 			children = (
 				56D155472A2A487800FDB7AC /* Shared */,
 				5677A8552A27999E00BD0456 /* 01_UserInput */,
+				56A7EEF52A32C55D00D4FAA0 /* 02_MultipleWindows */,
 				56D155482A2A48ED00FDB7AC /* 2D_01_AnimatedSprite */,
 				5677A8672A279C4200BD0456 /* Packages */,
 				5677A8542A27999E00BD0456 /* Products */,
@@ -62,6 +76,7 @@
 			children = (
 				5677A8532A27999E00BD0456 /* 01_UserInput.app */,
 				56D155552A2A490200FDB7AC /* 2D_01_AnimatedSprite.app */,
+				569C5E652A32C58C009CC52B /* 02_MultipleWindows.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -80,6 +95,14 @@
 				5677A8682A279C4200BD0456 /* GateEngineDemos */,
 			);
 			name = Packages;
+			sourceTree = "<group>";
+		};
+		56A7EEF52A32C55D00D4FAA0 /* 02_MultipleWindows */ = {
+			isa = PBXGroup;
+			children = (
+				569C5E662A32C5A2009CC52B /* MultipleWindows.swift */,
+			);
+			path = 02_MultipleWindows;
 			sourceTree = "<group>";
 		};
 		56D155472A2A487800FDB7AC /* Shared */ = {
@@ -120,6 +143,26 @@
 			);
 			productName = GateEngineDemos;
 			productReference = 5677A8532A27999E00BD0456 /* 01_UserInput.app */;
+			productType = "com.apple.product-type.application";
+		};
+		569C5E592A32C58C009CC52B /* 02_MultipleWindows */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 569C5E622A32C58C009CC52B /* Build configuration list for PBXNativeTarget "02_MultipleWindows" */;
+			buildPhases = (
+				569C5E5C2A32C58C009CC52B /* Sources */,
+				569C5E5E2A32C58C009CC52B /* Frameworks */,
+				569C5E602A32C58C009CC52B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = 02_MultipleWindows;
+			packageProductDependencies = (
+				569C5E5A2A32C58C009CC52B /* GateEngine */,
+			);
+			productName = GateEngineDemos;
+			productReference = 569C5E652A32C58C009CC52B /* 02_MultipleWindows.app */;
 			productType = "com.apple.product-type.application";
 		};
 		56D155492A2A490200FDB7AC /* 2D_01_AnimatedSprite */ = {
@@ -176,6 +219,7 @@
 			targets = (
 				5677A8522A27999E00BD0456 /* 01_UserInput */,
 				56D155492A2A490200FDB7AC /* 2D_01_AnimatedSprite */,
+				569C5E592A32C58C009CC52B /* 02_MultipleWindows */,
 			);
 		};
 /* End PBXProject section */
@@ -186,6 +230,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				5677A85B2A27999F00BD0456 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		569C5E602A32C58C009CC52B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				569C5E612A32C58C009CC52B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,6 +258,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				56D155562A2A491700FDB7AC /* UserInput.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		569C5E5C2A32C58C009CC52B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				569C5E672A32C5A2009CC52B /* MultipleWindows.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,6 +471,24 @@
 			};
 			name = Release;
 		};
+		569C5E632A32C58C009CC52B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
+				DEVELOPMENT_TEAM = 8TX6RJQV9M;
+			};
+			name = Debug;
+		};
+		569C5E642A32C58C009CC52B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
+				DEVELOPMENT_TEAM = 8TX6RJQV9M;
+			};
+			name = Release;
+		};
 		56D155532A2A490200FDB7AC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -450,6 +528,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		569C5E622A32C58C009CC52B /* Build configuration list for PBXNativeTarget "02_MultipleWindows" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				569C5E632A32C58C009CC52B /* Debug */,
+				569C5E642A32C58C009CC52B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		56D155522A2A490200FDB7AC /* Build configuration list for PBXNativeTarget "2D_01_AnimatedSprite" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -463,6 +550,14 @@
 
 /* Begin XCRemoteSwiftPackageReference section */
 		5677A8692A279C6300BD0456 /* XCRemoteSwiftPackageReference "GateEngine" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/STREGAsGate/GateEngine.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.2;
+			};
+		};
+		569C5E5B2A32C58C009CC52B /* XCRemoteSwiftPackageReference "GateEngine" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/STREGAsGate/GateEngine.git";
 			requirement = {
@@ -484,6 +579,11 @@
 		5677A86A2A279C6300BD0456 /* GateEngine */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 5677A8692A279C6300BD0456 /* XCRemoteSwiftPackageReference "GateEngine" */;
+			productName = GateEngine;
+		};
+		569C5E5A2A32C58C009CC52B /* GateEngine */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 569C5E5B2A32C58C009CC52B /* XCRemoteSwiftPackageReference "GateEngine" */;
 			productName = GateEngine;
 		};
 		56D1554A2A2A490200FDB7AC /* GateEngine */ = {

@@ -12,6 +12,9 @@ There are no "helper" functions or dependences.
 General
 1. [User Input](Sources/01_UserInput/UserInput.swift): 
 Show text when using certain user inputs.
+2. [Multiple Windows](Sources/02_MultipleWindows/MultipleWindows.swift): 
+Open multiple windows on compatible platforms.
+
 
 2D
 1. [Animated Sprite](Sources/2D_01_AnimatedSprite/AnimatedSprite.swift): 

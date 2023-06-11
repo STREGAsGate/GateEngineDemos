@@ -35,6 +35,7 @@ let package: Package = Package(
     platforms: [.macOS(.v10_15), .iOS(.v13), .tvOS(.v13)],
     products: [
         .executable(name: "01_UserInput", targets: ["01_UserInput"]),
+        .executable(name: "02_MultipleWindows", targets: ["02_MultipleWindows"]),
         
         .executable(name: "2D_01_AnimatedSprite", targets: ["2D_01_AnimatedSprite"]),
         
@@ -44,11 +45,15 @@ let package: Package = Package(
         .executable(name: "3D_FirstPerson", targets: ["3D_FirstPerson"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/STREGAsGate/GateEngine.git", branch: "main")
+        .package(url: "https://github.com/STREGAsGate/GateEngine.git", branch: "main"),
     ],
     targets: [
         .executableTarget(name: "01_UserInput", 
                           dependencies: ["GateEngine"], 
+                          swiftSettings: swiftSettings,
+                          linkerSettings: linkerSettings),
+        .executableTarget(name: "02_MultipleWindows",
+                          dependencies: ["GateEngine"],
                           swiftSettings: swiftSettings,
                           linkerSettings: linkerSettings),
         
