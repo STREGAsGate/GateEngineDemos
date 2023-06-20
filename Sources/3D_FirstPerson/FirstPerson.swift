@@ -144,22 +144,20 @@ class PlayerControllerSystem: System {
     
     // shouldUpdate() is executed immediatley before update(), and determines if update() is skipped
     override func shouldUpdate(game: Game, input: HID, withTimePassed deltaTime: Float) async -> Bool {
-        if input.mouse.hidden == false {
+        if input.mouse.mode == .standard {
             if input.mouse.button(.button1).isPressed {
-                if input.mouse.position?.y ?? 0 > 30 {
+                if input.mouse.position?.y ?? 0 > game.windowManager.mainWindow?.safeAreaInsets.top ?? 0 {
                     // If the mouse is visible and the user clicked the window below the titlebar then hide the mouse.
-                    input.mouse.hidden = true
-                    input.mouse.locked = true
+                    input.mouse.mode = .locked
                 }
             }
         }else if input.keyboard.button(.escape)!.isPressed {
             // If the mouse is hidden and the user pressed escape on the keyboard then unhide the mouse
-            input.mouse.hidden = false
-            input.mouse.locked = false
+            input.mouse.mode = .standard
         }
         
         // If the mouse is visible don't update this system
-        return input.mouse.hidden
+        return input.mouse.mode == .locked
     }
     
     // update() is executed every simulation tick, which may or may not be every frame
