@@ -88,15 +88,19 @@ class UserInputSystem: System {
                 input.gamePads.any.button.west.whenPressed(ifDifferent: &inputRecipts) { button in
                     component.text.string += "\n\(button.symbol) pressed!"
                 }
-                input.gamePads.any.anyButtonIsPressed.button.west.whenPressed(ifDifferent: &inputRecipts) { button in
-                    component.text.string += "\n\(button.symbol) pressed!"
-                }
                 
                 if input.gamePads.any.stick.right.isPushed {
                     component.text.string += String(format: "\nR-Stick Pushed x: %.3f, y: %.3f", input.gamePads.any.stick.right.xAxis, input.gamePads.any.stick.right.yAxis)
                 }
                 if input.gamePads.any.stick.left.isPushed {
                     component.text.string += String(format: "\nL-Stick Pushed x: %.3f, y: %.3f", input.gamePads.any.stick.left.xAxis, input.gamePads.any.stick.left.yAxis)
+                }
+
+                if input.gamePads.any.trigger.left.isPressed {
+                    component.text.string += String(format: "\nL-Trigger Pressed %.3f", input.gamePads.any.trigger.left.value)
+                }
+                if input.gamePads.any.trigger.right.isPressed {
+                    component.text.string += String(format: "\nR-Trigger Pressed %.3f", input.gamePads.any.trigger.right.value)
                 }
                 
                 // MARK: - Keyboard
