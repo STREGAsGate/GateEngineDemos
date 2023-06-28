@@ -34,8 +34,9 @@ let package: Package = Package(
     name: "GateEngineDemos",
     platforms: [.macOS(.v10_15), .iOS(.v13), .tvOS(.v13)],
     products: [
-        .executable(name: "01_UserInput", targets: ["01_UserInput"]),
-        .executable(name: "02_MultipleWindows", targets: ["02_MultipleWindows"]),
+        .executable(name: "01_UserInput", targets: ["_01_UserInput"]),
+        .executable(name: "02_MultipleWindows", targets: ["_02_MultipleWindows"]),
+        .executable(name: "03_SavingState", targets: ["_03_SavingState"]),
         
         .executable(name: "2D_01_AnimatedSprite", targets: ["2D_01_AnimatedSprite"]),
         
@@ -48,11 +49,15 @@ let package: Package = Package(
         .package(url: "https://github.com/STREGAsGate/GateEngine.git", branch: "main"),
     ],
     targets: [
-        .executableTarget(name: "01_UserInput", 
-                          dependencies: ["GateEngine"], 
+        .executableTarget(name: "_01_UserInput",
+                          dependencies: ["GateEngine"],
                           swiftSettings: swiftSettings,
                           linkerSettings: linkerSettings),
-        .executableTarget(name: "02_MultipleWindows",
+        .executableTarget(name: "_02_MultipleWindows",
+                          dependencies: ["GateEngine"],
+                          swiftSettings: swiftSettings,
+                          linkerSettings: linkerSettings),
+        .executableTarget(name: "_03_SavingState",
                           dependencies: ["GateEngine"],
                           swiftSettings: swiftSettings,
                           linkerSettings: linkerSettings),
