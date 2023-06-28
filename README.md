@@ -1,4 +1,4 @@
-# Gate Engine Demoes
+# Gate Engine Demos
 Example projects for [GateEngine](https://github.com/STREGAsGate/GateEngine), a cross platform game engine for Swift developers.
 
 [![CI](https://github.com/STREGAsGate/GateEngineDemos/actions/workflows/ci.yml/badge.svg)](https://github.com/STREGAsGate/GateEngineDemos/actions/workflows/ci.yml)
@@ -10,11 +10,12 @@ There are no "helper" functions or dependences.
 
 ## Available Examples
 General
-1. [User Input](Sources/01_UserInput/UserInput.swift): 
+1. [User Input](Sources/_01_UserInput/UserInput.swift): 
 Show text when using certain user inputs.
-2. [Multiple Windows](Sources/02_MultipleWindows/MultipleWindows.swift): 
+2. [Multiple Windows](Sources/_02_MultipleWindows/MultipleWindows.swift): 
 Open multiple windows on compatible platforms.
-
+3. [Multiple Windows](Sources/_03_SavingState/SavingState.swift): 
+Save and restore game state.
 
 2D
 1. [Animated Sprite](Sources/2D_01_AnimatedSprite/AnimatedSprite.swift): 
