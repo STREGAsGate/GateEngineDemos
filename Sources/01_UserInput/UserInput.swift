@@ -10,10 +10,10 @@ import GateEngine
 @main
 final class UserInputGameDelegate: GameDelegate {
     
-    // didFinishLaunching() is executed immediatley after the game is ready to start
+    // didFinishLaunching() is executed immediately after the game is ready to start
     func didFinishLaunching(game: Game, options: LaunchOptions) {
         
-        // Add our projects sytem which is implemented below
+        // Add our projects system which is implemented below
         game.insertSystem(UserInputSystem.self)
         
         // Add the projects rendering system to the game which implementation is below
@@ -160,7 +160,7 @@ class UserInputSystem: System {
                 
                 // MARK: - Touch
                 
-                // Touches can be on screen, indirect such as a trackpad or gamepad. Use the Touch.kind property to ensure you treat the touch appropriatley
+                // Touches can be on screen, indirect such as a trackpad or gamepad. Use the Touch.kind property to ensure you treat the touch appropriately
                 // as the user will expect certain things like screens to be pixel perfect and trackpads to be relative.
                 // A Touch.phase is valid for this update only. The .up phase is available exactly once before the Touch is removed, so be sure to check the phase every frame.
                 if let touch = input.screen.touches.first(where: {$0.phase == .up}) {
@@ -197,7 +197,7 @@ class TextRenderingSystem: RenderingSystem {
         // Canvas is light weight and you're meant to create a new one every frame
         var canvas = Canvas()
         
-        // Loop through all entites in the game
+        // Loop through all entities in the game
         for entity in game.entities {
             
             // Make sure the entity has a TextComponent, otherwise move on
@@ -213,7 +213,7 @@ class TextRenderingSystem: RenderingSystem {
             // to get a position that will center the text
             let position = windowCenter - halfTextSize
             
-            // Add the text to the canvas at our centerd position
+            // Add the text to the canvas at our centered position
             canvas.insert(text, at: position)
         }
         

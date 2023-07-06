@@ -13,7 +13,7 @@ import GateEngine
 @main
 final class FirstPersonGameDelegate: GameDelegate {
     
-    // didFinishLaunching() is executed immediatley after the game is ready to start
+    // didFinishLaunching() is executed immediately after the game is ready to start
     func didFinishLaunching(game: Game, options: LaunchOptions) {
         
         // Add our LevelLoadingSystem system to the game. Implementation is below
@@ -70,7 +70,7 @@ class LevelLoadingSystem: System {
         level.configure(MaterialComponent.self) { material in
             // Begin modifying material channel zero
             material.channel(0) { channel in
-                // Load the texture from our game's resoruces
+                // Load the texture from our game's resources
                 channel.texture = Texture(path: "Resources/Atlas.png")
             }
         }
@@ -125,7 +125,7 @@ class PlayerControllerSystem: System {
             component.kind = .dynamic
             // Robust protection applies a more expensiove collision check
             // This helps reduce the chance of an entity passing through a wall
-            // Use this option for entites that move with controls or move at higher speeds
+            // Use this option for entities that move with controls or move at higher speeds
             component.options = .robustProtection
             
             // The collider is the primitive shape used for collision checking
@@ -142,7 +142,7 @@ class PlayerControllerSystem: System {
         game.cameraEntity?.position3.move(0.5, toward: .up)
     }
     
-    // shouldUpdate() is executed immediatley before update(), and determines if update() is skipped
+    // shouldUpdate() is executed immediately before update(), and determines if update() is skipped
     override func shouldUpdate(game: Game, input: HID, withTimePassed deltaTime: Float) async -> Bool {
         if input.mouse.mode == .standard {
             if input.mouse.button(.button1).isPressed {
@@ -193,7 +193,7 @@ class PlayerControllerSystem: System {
         
         // Update the camera so it's in the correct position and looking in the correct direction
         game.cameraEntity?.configure(Transform3Component.self, { cameraTransform in
-            // Rotate the players roation by our vertical rotation giving us a rotation with both
+            // Rotate the players rotation by our vertical rotation giving us a rotation with both
             let newCameraRotation = playerTransform.rotation * Quaternion(-yAngle, axis: .right)
             // interpolate the rotation so the movement is smooth
             cameraTransform.rotation.interpolate(to: newCameraRotation, .linear(deltaTime * 30))

@@ -11,7 +11,7 @@ import GateEngine
 @main
 final class RotatingCubeGameDelegate: GameDelegate {
     
-    // didFinishLaunching() is executed immediatley after the game is ready to start
+    // didFinishLaunching() is executed immediately after the game is ready to start
     func didFinishLaunching(game: Game, options: LaunchOptions) {
         
         // Add the cube update system to the game. System implementation is below
@@ -79,7 +79,7 @@ class RotatingCubeSystem: System {
     // update() is executed every simulation tick, which may or may not be every frame
     override func update(game: Game, input: HID, withTimePassed deltaTime: Float) async {
         
-        // Loop through all entites in the game
+        // Loop through all entities in the game
         for entity in game.entities {
             
             // Make sure the entity is not the camera
@@ -107,7 +107,7 @@ class RotatingCubeSystem: System {
 // In these cases RenderingSystems do not get updated
 class RotatingCubeRenderingSystem: RenderingSystem {
     
-    // render() is called only wehn drawing needs to be done
+    // render() is called only when drawing needs to be done
     override func render(game: Game, window: Window, withTimePassed deltaTime: Float) {
         
         // To draw something in GateEngine you must create a container to store the renderable objects
@@ -119,7 +119,7 @@ class RotatingCubeRenderingSystem: RenderingSystem {
         // Scene is light weight and you're meant to create a new one every frame
         var scene = Scene(camera: camera)
 
-        // Loop through all entites in the game
+        // Loop through all entities in the game
         for entity in game.entities {
             
             // Make sure the entity has a material, otherwise move on

@@ -10,7 +10,7 @@ import GateEngine
 @main
 final class MultipleWindowsGameDelegate: GameDelegate {
     
-    /// didFinishLaunching() is executed immediatley after the game is ready to start
+    /// didFinishLaunching() is executed immediately after the game is ready to start
     func didFinishLaunching(game: Game, options: LaunchOptions) {
         game.insertSystem(SomeRenderingSystem.self)
     }
@@ -20,7 +20,7 @@ final class MultipleWindowsGameDelegate: GameDelegate {
         return try game.windowManager.createWindow(identifier: identifier, style: .bestForGames, options: [])
     }
     
-    /// This GameDelegate func allows you to provide a window on platfroms where a user can manually create one.
+    /// This GameDelegate func allows you to provide a window on platforms where a user can manually create one.
     func userRequestedWindow(game: Game) throws -> Window? {
         let id = userWindowNumber.generateID()
         let window = try game.windowManager.createWindow(identifier: "user\(id)")
@@ -57,11 +57,11 @@ class SomeRenderingSystem: RenderingSystem {
         
         do {
             let window2 = try game.windowManager.createWindow(identifier: "window2")
-            window2.title = "Programatic Window #2"
+            window2.title = "Programmatic Window #2"
             window2.clearColor = .lightRed
             
             let window3 = try game.windowManager.createWindow(identifier: "window3")
-            window3.title = "Programatic Window #3"
+            window3.title = "Programmatic Window #3"
             window3.clearColor = .lightRed
         }catch{
             print(error)
