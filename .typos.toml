@@ -8,5 +8,4 @@ extend-exclude = [
     "*.hpp", 
     "*.cpp", 
     "*.txt",
-    "**/UnmodifiedSource/**",
 ]
