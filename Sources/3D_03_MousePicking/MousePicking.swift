@@ -11,7 +11,7 @@ import GateEngine
 @main
 final class MousePickingGameDelegate: GameDelegate {
     
-    // didFinishLaunching() is executed immediatley after the game is ready to start
+    // didFinishLaunching() is executed immediately after the game is ready to start
     func didFinishLaunching(game: Game, options: LaunchOptions) {
         
         // Add the engine provided 3D collision system
@@ -20,7 +20,7 @@ final class MousePickingGameDelegate: GameDelegate {
         // Add the engine provided rendering system
         game.insertSystem(StandardRenderingSystem.self)
         
-        // Add the world system. Implemetation below.
+        // Add the world system. Implementation below.
         game.insertSystem(WorldSystem.self)
         
         // Create a new entity to store the camera
@@ -63,7 +63,7 @@ class WorldSystem: System {
                 let y: Float = Float((-10 ..< 10).randomElement()!)
                 // Keep all cube Z locations the same
                 let z: Float = 0
-                // Set the cubs postion
+                // Set the cubs position
                 component.position = Position3(x, y, z)
             }
             
@@ -112,7 +112,7 @@ class WorldSystem: System {
         let ray = canvas.convertTo3DSpace(mousePosition)
         
         // Ask the game for collision and get the first hit from our ray.
-        // We only care about entites, so we'll grab the hit.entity
+        // We only care about entities, so we'll grab the hit.entity
         if let entity = game.collision3DSystem.closestHit(from: ray)?.entity {
             // Change the color of the hit cube to yellow
             entity[MaterialComponent.self].channel(0) { channel in

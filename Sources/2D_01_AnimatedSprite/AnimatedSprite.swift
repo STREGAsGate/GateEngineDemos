@@ -13,13 +13,13 @@ import GateEngine
 @main
 final class AnimatedSpriteGameDelegate: GameDelegate {
     
-    // didFinishLaunching() is executed immediatley after the game is ready to start
+    // didFinishLaunching() is executed immediately after the game is ready to start
     func didFinishLaunching(game: Game, options: LaunchOptions) {
         
         // Add the engine provided SpriteSystem so our sprites get updated
         game.insertSystem(SpriteSystem.self)
         
-        // Add our projects sytem which is implemented below
+        // Add our projects system which is implemented below
         game.insertSystem(AnimatedSpriteSystem.self)
         
         // Add the projects rendering system to the game which implementation is below
@@ -86,7 +86,7 @@ class AnimatedSpriteSystem: System {
                     component.position.x = halfVerticalHeight * mainWindow.size.aspectRatio
                 }
                 
-                // we chose the vertical resoluton so we know where vertical center is
+                // we chose the vertical resolution so we know where vertical center is
                 component.position.y = halfVerticalHeight
             }
         }
@@ -116,7 +116,7 @@ class AnimatedSpriteRenderingSystem: RenderingSystem {
         // Canvas is light weight and you're meant to create a new one every frame
         var canvas = Canvas()
         
-        // Loop through all entites in the game
+        // Loop through all entities in the game
         for entity in game.entities {
             
             // Make sure the entity has a SpriteComponent, otherwise move on

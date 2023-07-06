@@ -1,0 +1,11 @@
+[default.extend-identifiers]
+inout = "inout"
+
+[files]
+extend-exclude = [
+    "*.c", 
+    "*.h", 
+    "*.hpp", 
+    "*.cpp", 
+    "*.txt",
+]
