@@ -42,7 +42,7 @@ final class TextComponent: Component {
 class UserInputSystem: System {
     
     // This value stores Input states and is used to check when an input has changed
-    var inputRecipts = InputRecipts()
+    var inputRecipts = InputReceipts()
     
     // setup() is executed a single time when the System is added to the game
     override func setup(game: Game, input: HID) async {
