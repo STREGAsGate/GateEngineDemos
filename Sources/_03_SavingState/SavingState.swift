@@ -73,15 +73,17 @@ class ChangeBackgroundColorSystem: System {
             /// Set the window background to the new color
             game.windowManager.mainWindow?.clearColor = color
             
-            do {
-                /// Add the new color to the state
-                try game.state.encode(color, forKey: "mainWindowColor")
-                
-                /// Save the state so it's available when we next launch
-                try game.state.save()
-            }catch{
-                /// Handle state save failures
-                print(error)
+            Task {
+                do {
+                    /// Add the new color to the state
+                    try game.state.encode(color, forKey: "mainWindowColor")
+                    
+                    /// Save the state so it's available when we next launch
+                    try await game.state.save()
+                }catch{
+                    /// Handle state save failures
+                    print(error)
+                }
             }
         }
     }
