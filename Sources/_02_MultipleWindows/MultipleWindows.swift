@@ -21,7 +21,7 @@ final class MultipleWindowsGameDelegate: GameDelegate {
     }
     
     /// This GameDelegate func allows you to provide a window on platfroms where a user can manually create one.
-    func userRequestedWindow(game: Game) throws -> Window? {
+    func createUserRequestedWindow(game: Game) throws -> Window? {
         let id = userWindowNumber.generateID()
         let window = try game.windowManager.createWindow(identifier: "user\(id)")
         window.title = "User Create Window #\(id)"
@@ -33,7 +33,7 @@ final class MultipleWindowsGameDelegate: GameDelegate {
     
     /// This GameDelegate func allows you to provide a window to an attached display,
     /// such as an AirPlay screen when using mirroring on an iOS device.
-    func screenBecomeAvailable(game: Game) throws -> Window? {
+    func createWindowForExternalscreen(game: Game) throws -> Window? {
         let id = screenWindowNumber.generateID()
         let window = try game.windowManager.createWindow(identifier: "external\(id)")
         window.title = "External Window #\(id)"

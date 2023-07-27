@@ -44,7 +44,7 @@ final class FirstPersonGameDelegate: GameDelegate {
     // HTML5 can't search because its a website. GateEngine will automatically search "ModuleName_ModuleName.resources".
     // But this module has a different name then it's package. There is no way to obtain the package name at runtime.
     // So We need to tell GateEngine the resource bundle name for this project, if you plan to deploy to HTML5.
-    func resourceSearchPaths() -> [URL] {
+    func customResourceLocations() -> [URL] {
         return [URL(string: "GateEngineDemos_3D_FirstPerson.resources")!]
     }
     #endif
@@ -170,7 +170,7 @@ class PlayerControllerSystem: System {
         // Update the vertical angle reference from the Mouse
         yAngle += Degrees(input.mouse.deltaPosition.y) * deltaTime * 50
         // Update the vertical angle reference from the gamepad
-        yAngle -= Degrees(input.gamePads.any.stick.right.yAxis) * deltaTime * 100 * input.gamePads.any.stick.right.pushedAmount
+        yAngle -= Degrees(input.gamePads.any.stick.right.yAxis) * deltaTime * 150 * input.gamePads.any.stick.right.pushedAmount
         // Lock the vertical angle so the player can't look too far up or down
         if yAngle > 80 {
             yAngle = 80
@@ -181,7 +181,7 @@ class PlayerControllerSystem: System {
         // Update the horizontal angle reference from the Mouse
         xAngle += Degrees(input.mouse.deltaPosition.x) * deltaTime * 40
         // Update the horizontal angle reference from the gamepad
-        xAngle += Degrees(input.gamePads.any.stick.right.xAxis) * deltaTime * 100 * input.gamePads.any.stick.right.pushedAmount
+        xAngle += Degrees(input.gamePads.any.stick.right.xAxis) * deltaTime * 200 * input.gamePads.any.stick.right.pushedAmount
         
         // .normalize() will lock the angle to 0..< 360 so our Quaternion can always store it
         xAngle.normalize()
@@ -189,17 +189,17 @@ class PlayerControllerSystem: System {
         // Create a horizontal rotation using our reference angle around the global up axis
         let newPlayerRotation = Quaternion(-xAngle, axis: .up)
         // interpolate the rotation so the movement is smooth
-        playerTransform.rotation.interpolate(to: newPlayerRotation, .linear(deltaTime * 30))
+        playerTransform.rotation.interpolate(to: newPlayerRotation, .linear(deltaTime * 100))
         
         // Update the camera so it's in the correct position and looking in the correct direction
         game.cameraEntity?.configure(Transform3Component.self, { cameraTransform in
             // Rotate the players roation by our vertical rotation giving us a rotation with both
             let newCameraRotation = playerTransform.rotation * Quaternion(-yAngle, axis: .right)
             // interpolate the rotation so the movement is smooth
-            cameraTransform.rotation.interpolate(to: newCameraRotation, .linear(deltaTime * 30))
+            cameraTransform.rotation.interpolate(to: newCameraRotation, .linear(deltaTime * 100))
             // Set the cameras position to 1 unit above the player
             // Becuase the player's origin is the ground and the camera is the "head"
-            cameraTransform.position = playerTransform.position.addingToY(1)
+            cameraTransform.position = playerTransform.position.addingTo(y: 1)
         })
         
         // Move the player based on keyboard presses
@@ -218,7 +218,7 @@ class PlayerControllerSystem: System {
         
         // Move the player based on the gamepad left stick
         let stickRotationRelativeToPlayer = Quaternion(input.gamePads.any.stick.left.direction.angleAroundZ, axis: .up) * playerTransform.rotation
-        playerTransform.position += stickRotationRelativeToPlayer.forward * deltaTime * 5 * input.gamePads.any.stick.left.pushedAmount
+        playerTransform.position += stickRotationRelativeToPlayer.forward * deltaTime * 5 * -input.gamePads.any.stick.left.pushedAmount
     }
     
     // phase determines at which point the system should be updated relative to other systems

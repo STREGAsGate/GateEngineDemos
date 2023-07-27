@@ -42,7 +42,7 @@ final class TextComponent: Component {
 class UserInputSystem: System {
     
     // This value stores Input states and is used to check when an input has changed
-    var inputRecipts = InputRecipts()
+    var inputReceipts = InputReceipts()
     
     // setup() is executed a single time when the System is added to the game
     override func setup(game: Game, input: HID) async {
@@ -71,7 +71,7 @@ class UserInputSystem: System {
                 // The "any" gamepad will return the most recently used gamepad.
                 // Use this for single user games so the user can swap controllers seamlessly.
                 // isPressed(ifDifferent:) will return true if the button is currently down but was previously up
-                input.gamePads.any.button.north.whenPressed(ifDifferent: &inputRecipts) { button in
+                input.gamePads.any.button.north.whenPressed(ifDifferent: &inputReceipts) { button in
                     
                     // the symbol property will return the platform button for the physical gamepad
                     // For example on DualShock south is .cross, and on Xbox south is .A
@@ -79,13 +79,13 @@ class UserInputSystem: System {
                     // based on the host OS and the physical gampad's manufacturer name
                     component.text.string += "\n\(button.symbol) pressed!"
                 }
-                input.gamePads.any.button.south.whenPressed(ifDifferent: &inputRecipts) { button in
+                input.gamePads.any.button.south.whenPressed(ifDifferent: &inputReceipts) { button in
                     component.text.string += "\n\(button.symbol) pressed!"
                 }
-                input.gamePads.any.button.east.whenPressed(ifDifferent: &inputRecipts) { button in
+                input.gamePads.any.button.east.whenPressed(ifDifferent: &inputReceipts) { button in
                     component.text.string += "\n\(button.symbol) pressed!"
                 }
-                input.gamePads.any.button.west.whenPressed(ifDifferent: &inputRecipts) { button in
+                input.gamePads.any.button.west.whenPressed(ifDifferent: &inputReceipts) { button in
                     component.text.string += "\n\(button.symbol) pressed!"
                 }
                 
@@ -106,16 +106,16 @@ class UserInputSystem: System {
                 // MARK: - Keyboard
                 
                 // Keyboard checks work similar to gamepad buttons, see above
-                if input.keyboard.button(.azerty("z"))?.isPressed(ifDifferent: &inputRecipts) == true {
+                if input.keyboard.button(.azerty("z"))?.isPressed(ifDifferent: &inputReceipts) == true {
                     component.text.string += "\nW pressed!"
-                }else if input.keyboard.button("s")?.isPressed(ifDifferent: &inputRecipts) == true {
+                }else if input.keyboard.button("s")?.isPressed(ifDifferent: &inputReceipts) == true {
                     component.text.string += "\nS pressed!"
-                }else if input.keyboard.button("a")?.isPressed(ifDifferent: &inputRecipts) == true {
+                }else if input.keyboard.button("a")?.isPressed(ifDifferent: &inputReceipts) == true {
                     component.text.string += "\nA pressed!"
-                }else if input.keyboard.button("d")?.isPressed(ifDifferent: &inputRecipts) == true {
+                }else if input.keyboard.button("d")?.isPressed(ifDifferent: &inputReceipts) == true {
                     component.text.string += "\nD pressed!"
                 }else if let button = input.keyboard.pressedButtons().first?.button {
-                    button.whenPressed(ifDifferent: &inputRecipts) { button in
+                    button.whenPressed(ifDifferent: &inputReceipts) { button in
                         component.text.string += "\n\(button) pressed!"
                     }
                 }
@@ -123,37 +123,37 @@ class UserInputSystem: System {
                 // MARK: - Mouse
                 
                 // Mouse buttons work similar to gamepad buttons, see above
-                input.mouse.button(.button1).whenPressed(ifDifferent: &inputRecipts) { button in
+                input.mouse.button(.button1).whenPressed(ifDifferent: &inputReceipts) { button in
                     component.text.string += String(format: "\nPrimary Click (%i) at x: %.0f, y: %.0f", button.pressCount,
                                                                                                         input.mouse.position!.x,
                                                                                                         input.mouse.position!.y)
                 }
-                input.mouse.button(.button2).whenPressed(ifDifferent: &inputRecipts) { button in
+                input.mouse.button(.button2).whenPressed(ifDifferent: &inputReceipts) { button in
                     component.text.string += String(format: "\nSecondary Click (%i) at x: %.0f, y: %.0f", button.pressCount,
                                                                                                           input.mouse.position!.x,
                                                                                                           input.mouse.position!.y)
                 }
-                input.mouse.button(.button3).whenPressed(ifDifferent: &inputRecipts) { button in
+                input.mouse.button(.button3).whenPressed(ifDifferent: &inputReceipts) { button in
                     component.text.string += String(format: "\nMiddle Click (%i) at x: %.0f, y: %.0f", button.pressCount,
                                                                                                        input.mouse.position!.x,
                                                                                                        input.mouse.position!.y)
                 }
-                input.mouse.button(.button4).whenPressed(ifDifferent: &inputRecipts) { button in
+                input.mouse.button(.button4).whenPressed(ifDifferent: &inputReceipts) { button in
                     component.text.string += String(format: "\nButton 4 Click (%i) at x: %.0f, y: %.0f", button.pressCount,
                                                                                                          input.mouse.position!.x,
                                                                                                          input.mouse.position!.y)
                 }
-                input.mouse.button(.button5).whenPressed(ifDifferent: &inputRecipts) { button in
+                input.mouse.button(.button5).whenPressed(ifDifferent: &inputReceipts) { button in
                     component.text.string += String(format: "\nButton 5 Click (%i) at x: %.0f, y: %.0f", button.pressCount,
                                                                                                          input.mouse.position!.x,
                                                                                                          input.mouse.position!.y)
                 }
                 
-                input.mouse.scroller(.horizontal).whenScrolled(ifDifferent: &inputRecipts) { scroller in
+                input.mouse.scroller(.horizontal).whenScrolled(ifDifferent: &inputReceipts) { scroller in
                     let direction = (scroller.direction == .positive) ? "Right" : "Left"
                     component.text.string += String(format: "\nScrolled %i (%@) Delta: %.3f, UI Delta: %.3f", scroller.ticks, direction, scroller.delta, scroller.uiDelta)
                 }
-                input.mouse.scroller(.vertical).whenScrolled(ifDifferent: &inputRecipts) { scroller in
+                input.mouse.scroller(.vertical).whenScrolled(ifDifferent: &inputReceipts) { scroller in
                     let direction = (scroller.direction == .positive) ? "Up" : "Down"
                     component.text.string += String(format: "\nScrolled %i (%@) Delta: %.3f, UI Delta: %.3f", scroller.ticks, direction, scroller.delta, scroller.uiDelta)
                 }

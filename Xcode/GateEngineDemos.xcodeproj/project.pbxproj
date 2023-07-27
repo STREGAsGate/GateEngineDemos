@@ -22,10 +22,10 @@
 /* Begin PBXFileReference section */
 		5677A8532A27999E00BD0456 /* 01_UserInput.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 01_UserInput.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5677A85A2A27999F00BD0456 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		5677A8652A279C1000BD0456 /* UserInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserInput.swift; path = ../../Sources/01_UserInput/UserInput.swift; sourceTree = "<group>"; };
+		5677A8652A279C1000BD0456 /* UserInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserInput.swift; path = ../../Sources/_01_UserInput/UserInput.swift; sourceTree = "<group>"; };
 		5677A8682A279C4200BD0456 /* GateEngineDemos */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = GateEngineDemos; path = ..; sourceTree = "<group>"; };
 		569C5E652A32C58C009CC52B /* 02_MultipleWindows.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 02_MultipleWindows.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		569C5E662A32C5A2009CC52B /* MultipleWindows.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MultipleWindows.swift; path = ../../Sources/02_MultipleWindows/MultipleWindows.swift; sourceTree = "<group>"; };
+		569C5E662A32C5A2009CC52B /* MultipleWindows.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MultipleWindows.swift; path = ../../Sources/_02_MultipleWindows/MultipleWindows.swift; sourceTree = "<group>"; };
 		56D155552A2A490200FDB7AC /* 2D_01_AnimatedSprite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 2D_01_AnimatedSprite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56D155572A2A492B00FDB7AC /* AnimatedSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnimatedSprite.swift; path = ../Sources/2D_01_AnimatedSprite/AnimatedSprite.swift; sourceTree = "<group>"; };
 		56D155592A2A493500FDB7AC /* Resources */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Resources; path = ../Sources/2D_01_AnimatedSprite/Resources; sourceTree = "<group>"; };
@@ -218,8 +218,8 @@
 			projectRoot = "";
 			targets = (
 				5677A8522A27999E00BD0456 /* 01_UserInput */,
-				56D155492A2A490200FDB7AC /* 2D_01_AnimatedSprite */,
 				569C5E592A32C58C009CC52B /* 02_MultipleWindows */,
+				56D155492A2A490200FDB7AC /* 2D_01_AnimatedSprite */,
 			);
 		};
 /* End PBXProject section */
@@ -315,12 +315,12 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 8TX6RJQV9M;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -405,12 +405,12 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 8TX6RJQV9M;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -456,54 +456,36 @@
 		5677A8632A27999F00BD0456 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
-				DEVELOPMENT_TEAM = 8TX6RJQV9M;
 			};
 			name = Debug;
 		};
 		5677A8642A27999F00BD0456 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
-				DEVELOPMENT_TEAM = 8TX6RJQV9M;
 			};
 			name = Release;
 		};
 		569C5E632A32C58C009CC52B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
-				DEVELOPMENT_TEAM = 8TX6RJQV9M;
 			};
 			name = Debug;
 		};
 		569C5E642A32C58C009CC52B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
-				DEVELOPMENT_TEAM = 8TX6RJQV9M;
 			};
 			name = Release;
 		};
 		56D155532A2A490200FDB7AC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
-				DEVELOPMENT_TEAM = 8TX6RJQV9M;
 			};
 			name = Debug;
 		};
 		56D155542A2A490200FDB7AC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
-				DEVELOPMENT_TEAM = 8TX6RJQV9M;
 			};
 			name = Release;
 		};

@@ -66,7 +66,6 @@ class ChangeBackgroundColorSystem: System {
         
         /// When the user clicks the window change it's color and save it
         input.mouse.button(.primary).whenPressed(ifDifferent: &recipts) { button in
-            
             /// Get a new color
             let color = newColor()
             
@@ -77,8 +76,14 @@ class ChangeBackgroundColorSystem: System {
                 /// Add the new color to the state
                 try game.state.encode(color, forKey: "mainWindowColor")
                 
-                /// Save the state so it's available when we next launch
-                try game.state.save()
+                Task {
+                    do {
+                        /// Save the state so it's available when we next launch
+                        try await game.state.save()
+                    }catch{
+                        print(error)
+                    }
+                }
             }catch{
                 /// Handle state save failures
                 print(error)
