@@ -33,7 +33,7 @@ final class SavingStateGameDelegate: GameDelegate {
 class ChangeBackgroundColorSystem: System {
     
     /// This value stores Input states and is used to check when an input has changed
-    var recipts = InputRecipts()
+    var receipts = InputReceipts()
     
     /// setup() is executed a single time when the System is added to the game
     override func setup(game: Game, input: HID) async {
@@ -65,7 +65,7 @@ class ChangeBackgroundColorSystem: System {
         }
         
         /// When the user clicks the window change it's color and save it
-        input.mouse.button(.primary).whenPressed(ifDifferent: &recipts) { button in
+        input.mouse.button(.primary).whenPressed(ifDifferent: &receipts) { button in
             /// Get a new color
             let color = newColor()
             
