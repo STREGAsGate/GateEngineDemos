@@ -11,7 +11,7 @@ import GateEngine
 final class UserInputGameDelegate: GameDelegate {
     
     // didFinishLaunching() is executed immediatley after the game is ready to start
-    func didFinishLaunching(game: Game, options: LaunchOptions) {
+    func didFinishLaunching(game: Game, options: LaunchOptions) async {
         
         // Add our projects sytem which is implemented below
         game.insertSystem(UserInputSystem.self)
@@ -64,7 +64,7 @@ class UserInputSystem: System {
         if let entity = game.firstEntity(withComponent: TextComponent.self) {
             
             // Unwrap the TextComponent
-            entity.configure(TextComponent.self) { component in
+            await entity.configure(TextComponent.self) { [self] component in
                 
                 // MARK: - Gamepads
                 

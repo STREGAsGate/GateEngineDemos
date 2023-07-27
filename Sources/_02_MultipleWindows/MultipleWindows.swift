@@ -11,7 +11,7 @@ import GateEngine
 final class MultipleWindowsGameDelegate: GameDelegate {
     
     /// didFinishLaunching() is executed immediatley after the game is ready to start
-    func didFinishLaunching(game: Game, options: LaunchOptions) {
+    func didFinishLaunching(game: Game, options: LaunchOptions) async {
         game.insertSystem(SomeRenderingSystem.self)
     }
     

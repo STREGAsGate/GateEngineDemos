@@ -14,7 +14,7 @@ import GateEngine
 final class SkinnedCharacterGameDelegate: GameDelegate {
     
     // didFinishLaunching() is executed immediatley after the game is ready to start
-    func didFinishLaunching(game: Game, options: LaunchOptions) {
+    func didFinishLaunching(game: Game, options: LaunchOptions) async {
         // Add the engine provided RigSystem so our character can animate
         game.insertSystem(RigSystem.self)
         
@@ -31,7 +31,7 @@ final class SkinnedCharacterGameDelegate: GameDelegate {
         camera.insert(CameraComponent.self)
         
         // Unwrap a Transform3Component
-        camera.configure(Transform3Component.self) { component in
+        await camera.configure(Transform3Component.self) { component in
             
             // Move the camera backward, relative to it's rotation, by 5 units
             component.position.move(5, toward: component.rotation.backward)
@@ -65,14 +65,14 @@ class SkinnedCharacterSystem: System {
         let character = Entity()
         
         // Give the entity a 3D transform
-        character.configure(Transform3Component.self) { component in
+        await character.configure(Transform3Component.self) { component in
             
             // // Move 2 units down, so it's centered on camera
             component.position.move(2, toward: .down)
         }
         
         // Give the entity rig
-        character.configure(Rig3DComponent.self) { component in
+        await character.configure(Rig3DComponent.self) { component in
             
             // Load the characters skeleton from the characters source file
             component.skeleton = try! await Skeleton(path: "Resources/Cat.glb")
@@ -86,13 +86,13 @@ class SkinnedCharacterSystem: System {
         }
         
         // Give the entity 3D geometry
-        character.configure(RenderingGeometryComponent.self) { component in
+        await character.configure(RenderingGeometryComponent.self) { component in
             // Load the characters geometry from the characters source file
             component.skinnedGeometry = SkinnedGeometry(path: "Resources/Cat.glb")
         }
         
         // Give the entity a material
-        character.configure(MaterialComponent.self) { component in
+        await character.configure(MaterialComponent.self) { component in
             // Begin modifying material channel zero
             component.channel(0) { channel in
                 // Load the characters texture
@@ -113,7 +113,7 @@ class SkinnedCharacterSystem: System {
             guard entity.hasComponent(CameraComponent.self) == false else {continue}
             
             // Get the 3D transform component if one exists, otherwise skip to the next entity
-            entity.configure(Transform3Component.self) { component in
+            await entity.configure(Transform3Component.self) { component in
                 
                 // Rotate the character around the up axis based on deltaTime
                 component.rotation *= Quaternion(Degrees(deltaTime * 15), axis: .up)

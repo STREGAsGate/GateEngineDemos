@@ -14,7 +14,7 @@ import GateEngine
 final class AnimatedSpriteGameDelegate: GameDelegate {
     
     // didFinishLaunching() is executed immediatley after the game is ready to start
-    func didFinishLaunching(game: Game, options: LaunchOptions) {
+    func didFinishLaunching(game: Game, options: LaunchOptions) async {
         
         // Add the engine provided SpriteSystem so our sprites get updated
         game.insertSystem(SpriteSystem.self)
@@ -52,7 +52,7 @@ class AnimatedSpriteSystem: System {
         let entity = Entity(name: "Spinning Earth")
         
         // Unwrap a SpriteComponent
-        entity.configure(SpriteComponent.self) { component in
+        await entity.configure(SpriteComponent.self) { component in
             
             // set the size of the sprite relative to the native texture size
             component.spriteSize = Size2(width: 32, height: 32)
@@ -76,7 +76,7 @@ class AnimatedSpriteSystem: System {
         if let entity = game.entity(named: "Spinning Earth") {
             
             // Unwrap a Transform2Component
-            entity.configure(Transform2Component.self) { component in
+            await entity.configure(Transform2Component.self) { component in
                 
                 // the vertical center of our custom resolution renderTarget
                 let halfVerticalHeight: Float = 144 / 2

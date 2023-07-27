@@ -16,7 +16,7 @@ import GateEngine
 final class SavingStateGameDelegate: GameDelegate {
     
     /// didFinishLaunching() is executed immediatley after the game is ready to start
-    func didFinishLaunching(game: Game, options: LaunchOptions) {
+    func didFinishLaunching(game: Game, options: LaunchOptions) async {
         
         /// Add our system to process changes, implemented below
         game.insertSystem(ChangeBackgroundColorSystem.self)

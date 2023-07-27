@@ -14,7 +14,7 @@ import GateEngine
 final class FirstPersonGameDelegate: GameDelegate {
     
     // didFinishLaunching() is executed immediatley after the game is ready to start
-    func didFinishLaunching(game: Game, options: LaunchOptions) {
+    func didFinishLaunching(game: Game, options: LaunchOptions) async {
         
         // Add our LevelLoadingSystem system to the game. Implementation is below
         game.insertSystem(LevelLoadingSystem.self)
@@ -61,13 +61,13 @@ class LevelLoadingSystem: System {
         level.insert(Transform3Component.self)
             
         // Give the level rendering geometry
-        level.configure(RenderingGeometryComponent.self) { component in
+        await level.configure(RenderingGeometryComponent.self) { component in
             // Load the LevelRenderingGeometry from game's resources
             component.geometry = Geometry(path: "Resources/LevelRenderingGeometry.obj")
         }
         
         // Give the level a material
-        level.configure(MaterialComponent.self) { material in
+        await level.configure(MaterialComponent.self) { material in
             // Begin modifying material channel zero
             material.channel(0) { channel in
                 // Load the texture from our game's resoruces
@@ -76,11 +76,15 @@ class LevelLoadingSystem: System {
         }
         
         // Give the level an OctreeComponent, which allows for 3D mesh collision
-        level.configure(OctreeComponent.self) { component in
-            // Load the LevelCollisionGeometry from our game's resources
-            // This is async and the OctreeComponent will only be added to the level after loading is complete
-            // We'll use this to check when loading is done so the player doesn't fall through the level before it has collision loaded
-            try await component.load(path: "Resources/LevelCollisionGeometry.obj", center: .zero)
+        await level.configure(OctreeComponent.self) { component in
+            do {
+                // Load the LevelCollisionGeometry from our game's resources
+                // This is async and the OctreeComponent will only be added to the level after loading is complete
+                // We'll use this to check when loading is done so the player doesn't fall through the level before it has collision loaded
+                try await component.load(path: "Resources/LevelCollisionGeometry.obj", center: .zero)
+            }catch{
+                fatalError("\(error)")
+            }
         }
         
         // Add the level to the game
@@ -120,7 +124,7 @@ class PlayerControllerSystem: System {
         player.insert(Physics3DComponent.self)
         
         // Give the player a collision component so we can collide with the world
-        player.configure(Collision3DComponent.self) { component in
+        await player.configure(Collision3DComponent.self) { component in
             // Dynamic collision is for objects that move and can be moved
             component.kind = .dynamic
             // Robust protection applies a more expensiove collision check
@@ -192,9 +196,9 @@ class PlayerControllerSystem: System {
         playerTransform.rotation.interpolate(to: newPlayerRotation, .linear(deltaTime * 100))
         
         // Update the camera so it's in the correct position and looking in the correct direction
-        game.cameraEntity?.configure(Transform3Component.self, { cameraTransform in
+        await game.cameraEntity?.configure(Transform3Component.self, { cameraTransform in
             // Rotate the players roation by our vertical rotation giving us a rotation with both
-            let newCameraRotation = playerTransform.rotation * Quaternion(-yAngle, axis: .right)
+            let newCameraRotation = playerTransform.rotation * Quaternion(-self.yAngle, axis: .right)
             // interpolate the rotation so the movement is smooth
             cameraTransform.rotation.interpolate(to: newCameraRotation, .linear(deltaTime * 100))
             // Set the cameras position to 1 unit above the player
