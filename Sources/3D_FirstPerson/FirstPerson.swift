@@ -45,7 +45,7 @@ final class FirstPersonGameDelegate: GameDelegate {
     // HTML5 can't search because its a website. GateEngine will automatically search "ModuleName_ModuleName.resources".
     // But this module has a different name then it's package. There is no way to obtain the package name at runtime.
     // So We need to tell GateEngine the resource bundle name for this project, if you plan to deploy to HTML5.
-    func customResourceLocations() -> [URL] {
+    func customResourceLocations() -> [String] {
         return ["GateEngineDemos_3D_FirstPerson.resources"]
     }
     #endif
