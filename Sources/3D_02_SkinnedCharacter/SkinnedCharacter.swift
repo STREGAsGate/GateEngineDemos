@@ -50,7 +50,7 @@ final class SkinnedCharacterGameDelegate: GameDelegate {
     // But this module has a different name then it's package. There is no way to obtain the package name at runtime.
     // So We need to tell GateEngine the resource bundle name for this project, if you plan to deploy to HTML5.
     func customResourceLocations() -> [URL] {
-        return [URL(string: "GateEngineDemos_3D_02_SkinnedCharacter.resources")!]
+        return ["GateEngineDemos_3D_02_SkinnedCharacter.resources"]
     }
     #endif
 }

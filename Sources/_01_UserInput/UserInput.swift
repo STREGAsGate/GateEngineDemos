@@ -11,7 +11,7 @@ import GateEngine
 final class UserInputGameDelegate: GameDelegate {
     
     // didFinishLaunching() is executed immediatley after the game is ready to start
-    func didFinishLaunching(game: Game, options: LaunchOptions) async {
+    func didFinishLaunching(game: Game, options: LaunchOptions) {
         
         // Add our projects sytem which is implemented below
         game.insertSystem(UserInputSystem.self)
