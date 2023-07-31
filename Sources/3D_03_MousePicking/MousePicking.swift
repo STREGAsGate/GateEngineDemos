@@ -69,20 +69,25 @@ class WorldSystem: System {
             
             // Add a Collision3DComponent
             await cube.configure(Collision3DComponent.self) { component in
+                
                 // Set the collider radius to half our unit cube, which will cover the whole cube.
                 component.collider = AxisAlignedBoundingBox3D(radius: Size3(0.5))
             }
             
             // Give the entity 3D geometry
             await cube.configure(RenderingGeometryComponent.self) { component in
+                
                 // Load the engine provided unit cube. A unit cube is 1x1x1 units.
-                component.geometry = Geometry(as: .unitCube)
+                component.insert(Geometry(as: .unitCube))
             }
             
             await cube.configure(MaterialComponent.self) { component in
+                
                 // Use the system shader that renderers channel.color
                 component.fragmentShader = .materialColor
+               
                 component.channel(0) { channel in
+                    
                     // Give this a cube a random color
                     channel.color = [.lightRed, .lightGreen, .lightBlue].randomElement()!
                 }
@@ -97,8 +102,10 @@ class WorldSystem: System {
     override func update(game: Game, input: HID, withTimePassed deltaTime: Float) async {
         // Make sure the mainWindow exists
         guard let window = game.windowManager.mainWindow else {return}
+        
         // Create a camera from the cameraEntity for our Canvas later
         guard let camera = Camera(game.cameraEntity) else {return}
+        
         // Grab the current mouse position if there is one
         guard let mousePosition = input.mouse.position else {return}
         
@@ -106,6 +113,7 @@ class WorldSystem: System {
         // Canvas has the ability to convert from 2D and 3D spaces,
         // we won't be drawing anything with this canvas.
         let canvas = Canvas(window: window, camera: camera)
+        
         // Obtain a Ray3D from the canvas pointing from tnhe screen toward 3D space
         // The ray.origin is on the screen and the ray.direction will hit anything otward into 3D space
         // We'll use this to find an entity under the mouse cursor
@@ -114,6 +122,7 @@ class WorldSystem: System {
         // Ask the game for collision and get the first hit from our ray.
         // We only care about entites, so we'll grab the hit.entity
         if let entity = game.collision3DSystem.closestHit(from: ray)?.entity {
+            
             // Change the color of the hit cube to yellow
             entity[MaterialComponent.self].channel(0) { channel in
                 channel.color = .yellow
