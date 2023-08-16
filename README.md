@@ -14,7 +14,7 @@ General
 Show text when using certain user inputs.
 2. [Multiple Windows](Sources/_02_MultipleWindows/MultipleWindows.swift): 
 Open multiple windows on compatible platforms.
-3. [Multiple Windows](Sources/_03_SavingState/SavingState.swift): 
+3. [Save State](Sources/_03_SavingState/SavingState.swift): 
 Save and restore game state.
 
 2D
