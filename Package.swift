@@ -46,7 +46,7 @@ let package: Package = Package(
         .executable(name: "3D_FirstPerson", targets: ["3D_FirstPerson"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/STREGAsGate/GateEngine.git", branch: "graphics-audit"),
+        .package(url: "https://github.com/STREGAsGate/GateEngine.git", branch: "main"),
     ],
     targets: [
         .executableTarget(name: "_01_UserInput",
