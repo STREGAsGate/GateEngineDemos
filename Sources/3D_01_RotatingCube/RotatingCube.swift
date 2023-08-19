@@ -60,7 +60,7 @@ class RotatingCubeSystem: System {
         // Give the entity 3D geometry
         await cube.configure(RenderingGeometryComponent.self) { component in
             // Load the engine provided unit cube. A unit cube is 1x1x1 units
-            component.geometry = Geometry(as: .unitCube)
+            component.insert(Geometry(as: .unitCube))
         }
         
         // Give the entity a material
@@ -128,10 +128,15 @@ class RotatingCubeRenderingSystem: RenderingSystem {
             // Make sure the entity has a 3D transform, otherwise move on
             guard let transform = entity.component(ofType: Transform3Component.self)?.transform else {continue}
 
-            // Make sure the entity has geometry and unwrap it
-            if let geometry = entity.component(ofType: RenderingGeometryComponent.self)?.geometry {
-                // Add the geometry to the scene with it's material and transform
-                scene.insert(geometry, withMaterial: material, at: transform)
+            // Make sure the entity has a RenderingGeometryComponent and unwrap it
+            if let geometryComponent = entity.component(ofType: RenderingGeometryComponent.self) {
+                
+                // Loop through all geometry in the RenderingGeometryComponent
+                for geometry in geometryComponent.geometries {
+                    
+                    // Add the geometry to the scene with it's material and transform
+                    scene.insert(geometry, withMaterial: material, at: transform)
+                }
             }
         }
         

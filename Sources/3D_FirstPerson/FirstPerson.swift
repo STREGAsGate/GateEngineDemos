@@ -63,14 +63,17 @@ class LevelLoadingSystem: System {
             
         // Give the level rendering geometry
         await level.configure(RenderingGeometryComponent.self) { component in
+            
             // Load the LevelRenderingGeometry from game's resources
-            component.geometry = Geometry(path: "Resources/LevelRenderingGeometry.obj")
+            component.insert(Geometry(path: "Resources/LevelRenderingGeometry.obj"))
         }
         
         // Give the level a material
         await level.configure(MaterialComponent.self) { material in
+            
             // Begin modifying material channel zero
             material.channel(0) { channel in
+                
                 // Load the texture from our game's resoruces
                 channel.texture = Texture(path: "Resources/Atlas.png")
             }
@@ -94,10 +97,13 @@ class LevelLoadingSystem: System {
     
     // update() is executed every simulation tick, which may or may not be every frame
     override func update(game: Game, input: HID, withTimePassed deltaTime: Float) async {
+        
         // The OctreeComponent was configured asynchronous. It's done loading when it's on the entity
         if level.hasComponent(OctreeComponent.self) {
+            
             // Remove the level system as we used it for loading only
             game.removeSystem(self)
+            
             // Add the PlayerControllerSystem. Implementation below
             game.insertSystem(PlayerControllerSystem.self)
         }
@@ -109,8 +115,10 @@ class LevelLoadingSystem: System {
 
 // System subclasses are used to manipulate the simulation. They can't be used to draw content.
 class PlayerControllerSystem: System {
+    
     // A vertical reference angle
     var yAngle: Degrees = .zero
+    
     // A horizontal reference angle
     var xAngle: Degrees = .zero
     
@@ -167,15 +175,19 @@ class PlayerControllerSystem: System {
     
     // update() is executed every simulation tick, which may or may not be every frame
     override func update(game: Game, input: HID, withTimePassed deltaTime: Float) async {
+        
         // Find the player entity
         guard let player = game.entity(named: "Player") else {return}
+        
         // Unwrap the player transform
         guard let playerTransform = player.component(ofType: Transform3Component.self) else {return}
 
         // Update the vertical angle reference from the Mouse
         yAngle += Degrees(input.mouse.deltaPosition.y) * deltaTime * 50
+        
         // Update the vertical angle reference from the gamepad
         yAngle -= Degrees(input.gamePads.any.stick.right.yAxis) * deltaTime * 150 * input.gamePads.any.stick.right.pushedAmount
+        
         // Lock the vertical angle so the player can't look too far up or down
         if yAngle > 80 {
             yAngle = 80
@@ -185,6 +197,7 @@ class PlayerControllerSystem: System {
         
         // Update the horizontal angle reference from the Mouse
         xAngle += Degrees(input.mouse.deltaPosition.x) * deltaTime * 40
+        
         // Update the horizontal angle reference from the gamepad
         xAngle += Degrees(input.gamePads.any.stick.right.xAxis) * deltaTime * 200 * input.gamePads.any.stick.right.pushedAmount
         
@@ -193,15 +206,19 @@ class PlayerControllerSystem: System {
         
         // Create a horizontal rotation using our reference angle around the global up axis
         let newPlayerRotation = Quaternion(-xAngle, axis: .up)
+        
         // interpolate the rotation so the movement is smooth
         playerTransform.rotation.interpolate(to: newPlayerRotation, .linear(deltaTime * 100))
         
         // Update the camera so it's in the correct position and looking in the correct direction
         await game.cameraEntity?.configure(Transform3Component.self, { cameraTransform in
+            
             // Rotate the players roation by our vertical rotation giving us a rotation with both
             let newCameraRotation = playerTransform.rotation * Quaternion(-self.yAngle, axis: .right)
+            
             // interpolate the rotation so the movement is smooth
             cameraTransform.rotation.interpolate(to: newCameraRotation, .linear(deltaTime * 100))
+            
             // Set the cameras position to 1 unit above the player
             // Becuase the player's origin is the ground and the camera is the "head"
             cameraTransform.position = playerTransform.position.addingTo(y: 1)

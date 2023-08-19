@@ -87,8 +87,9 @@ class SkinnedCharacterSystem: System {
         
         // Give the entity 3D geometry
         await character.configure(RenderingGeometryComponent.self) { component in
+            
             // Load the characters geometry from the characters source file
-            component.skinnedGeometry = SkinnedGeometry(path: "Resources/Cat.glb")
+            component.insert(SkinnedGeometry(path: "Resources/Cat.glb"))
         }
         
         // Give the entity a material
@@ -146,24 +147,29 @@ class SkinnedCharacterRenderingSystem: RenderingSystem {
         // Loop through all entites in the game
         for entity in game.entities {
             
-            // Make sure the entity has a material, otherwise move on
-            guard var material = entity.component(ofType: MaterialComponent.self)?.material else {continue}
-
             // Make sure the entity has a rig and get it's current pose, otherwise move on
             // A Pose is the state of a skeleton at it's current animation frame
             guard let pose = entity.component(ofType: Rig3DComponent.self)?.skeleton.getPose() else {continue}
             
+            // Make sure the entity has a material, otherwise move on
+            guard let material = entity.component(ofType: MaterialComponent.self)?.material else {continue}
+
             // Make sure the entity has a 3D transform, otherwise move on
             guard let transform = entity.component(ofType: Transform3Component.self)?.transform else {continue}
             
             // Make sure the entity has geometry and unwrap it
-            if let geometry = entity.component(ofType: RenderingGeometryComponent.self)?.skinnedGeometry {
-                scene.insert(geometry, withPose: pose, material: material, at: transform)
+            if let geometryComponent = entity.component(ofType: RenderingGeometryComponent.self) {
+                
+                // Loop through all SkinnedGeometry in the RenderingGeometryComponent
+                for geometry in geometryComponent.skinnedGeometries {
+                    
+                    // Add the geometry to the scene with it's material and transform
+                    scene.insert(geometry, withPose: pose, material: material, at: transform)
+                }
             }
         }
         
-        // A framebuffer is a RenderTarget that represents the window
-        // The frameBuffer will automatically draw the scene
+        // Add the scene to the window to be drawn
         window.insert(scene)
     }
 }

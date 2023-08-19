@@ -10,9 +10,9 @@ let swiftSettings: [SwiftSetting] = {
         // This is required on Windows due to a bug
         // SR-12683 https://github.com/apple/swift/issues/55127
         .unsafeFlags(["-parse-as-library"], .when(platforms: [.windows])),
-
+        
         // These flags tell Windows that the executable is UI based (shows a window) and hides the command prompt
-        .unsafeFlags(["-Xfrontend", "-entry-point-function-name"], .when(platforms: [.windows], configuration: .release)),    
+        .unsafeFlags(["-Xfrontend", "-entry-point-function-name"], .when(platforms: [.windows], configuration: .release)),
         .unsafeFlags(["-Xfrontend", "wWinMain"], .when(platforms: [.windows], configuration: .release)),
     ])
     #endif
@@ -46,7 +46,7 @@ let package: Package = Package(
         .executable(name: "3D_FirstPerson", targets: ["3D_FirstPerson"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/STREGAsGate/GateEngine.git", branch: "main"),
+        .package(url: "https://github.com/STREGAsGate/GateEngine.git", branch: "graphics-audit"),
     ],
     targets: [
         .executableTarget(name: "_01_UserInput",
@@ -62,19 +62,19 @@ let package: Package = Package(
                           swiftSettings: swiftSettings,
                           linkerSettings: linkerSettings),
         
-        .executableTarget(name: "2D_01_AnimatedSprite", 
-                          dependencies: ["GateEngine"], 
-                          resources: [.copy("Resources")], 
+        .executableTarget(name: "2D_01_AnimatedSprite",
+                          dependencies: ["GateEngine"],
+                          resources: [.copy("Resources")],
                           swiftSettings: swiftSettings,
                           linkerSettings: linkerSettings),
-    
-        .executableTarget(name: "3D_01_RotatingCube", 
-                          dependencies: ["GateEngine"], 
+        
+        .executableTarget(name: "3D_01_RotatingCube",
+                          dependencies: ["GateEngine"],
                           swiftSettings: swiftSettings,
                           linkerSettings: linkerSettings),
-        .executableTarget(name: "3D_02_SkinnedCharacter", 
-                          dependencies: ["GateEngine"], 
-                          resources: [.copy("Resources")], 
+        .executableTarget(name: "3D_02_SkinnedCharacter",
+                          dependencies: ["GateEngine"],
+                          resources: [.copy("Resources")],
                           swiftSettings: swiftSettings,
                           linkerSettings: linkerSettings),
         .executableTarget(name: "3D_03_MousePicking",
