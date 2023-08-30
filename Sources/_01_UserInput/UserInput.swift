@@ -106,13 +106,13 @@ class UserInputSystem: System {
                 // MARK: - Keyboard
                 
                 // Keyboard checks work similar to gamepad buttons, see above
-                if input.keyboard.button(.azerty("z"))?.isPressed(ifDifferent: &inputReceipts) == true {
+                if input.keyboard.button(.azerty("z")).isPressed(ifDifferent: &inputReceipts) {
                     component.text.string += "\nW pressed!"
-                }else if input.keyboard.button("s")?.isPressed(ifDifferent: &inputReceipts) == true {
+                }else if input.keyboard.button("s").isPressed(ifDifferent: &inputReceipts) {
                     component.text.string += "\nS pressed!"
-                }else if input.keyboard.button("a")?.isPressed(ifDifferent: &inputReceipts) == true {
+                }else if input.keyboard.button("a").isPressed(ifDifferent: &inputReceipts) {
                     component.text.string += "\nA pressed!"
-                }else if input.keyboard.button("d")?.isPressed(ifDifferent: &inputReceipts) == true {
+                }else if input.keyboard.button("d").isPressed(ifDifferent: &inputReceipts) {
                     component.text.string += "\nD pressed!"
                 }else if let button = input.keyboard.pressedButtons().first?.button {
                     button.whenPressed(ifDifferent: &inputReceipts) { button in
