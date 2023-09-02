@@ -39,6 +39,7 @@ let package: Package = Package(
         .executable(name: "03_SavingState", targets: ["_03_SavingState"]),
         
         .executable(name: "2D_01_AnimatedSprite", targets: ["2D_01_AnimatedSprite"]),
+        .executable(name: "2D_Pong", targets: ["2D_Pong"]),
         
         .executable(name: "3D_01_RotatingCube", targets: ["3D_01_RotatingCube"]),
         .executable(name: "3D_02_SkinnedCharacter", targets: ["3D_02_SkinnedCharacter"]),
@@ -65,6 +66,10 @@ let package: Package = Package(
         .executableTarget(name: "2D_01_AnimatedSprite",
                           dependencies: ["GateEngine"],
                           resources: [.copy("Resources")],
+                          swiftSettings: swiftSettings,
+                          linkerSettings: linkerSettings),
+        .executableTarget(name: "2D_Pong",
+                          dependencies: ["GateEngine"],
                           swiftSettings: swiftSettings,
                           linkerSettings: linkerSettings),
         

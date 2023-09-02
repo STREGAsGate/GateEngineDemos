@@ -20,6 +20,8 @@ Save and restore game state.
 2D
 1. [Animated Sprite](Sources/2D_01_AnimatedSprite/AnimatedSprite.swift): 
 An animated sprite loaded from assets.
+* [Pong](Sources/2D_Pong/Pong.swift): 
+A virtual table tenis clone.
 
 3D
 1. [Rotating Cube](Sources/3D_01_RotatingCube/RotatingCube.swift): 
@@ -32,9 +34,12 @@ Changes the color of an object under the mouse cursor.
 Move around a level with mouse and keyboard controls.
 
 # Support Gate Engine!
-If you appreciate this project, and want it to continue, then please consider putting some dollars into it.
-</br>
-Every little bit helps! Support With: [GitHub](https://github.com/sponsors/STREGAsGate), [Ko-fi](https://ko-fi.com/STREGAsGate), [Pateron](https://www.patreon.com/STREGAsGate)
+If you appreciate this project, and want it to continue, then please consider putting some currency into it.</br>
+Every little bit helps! Support With:
+[GitHub](https://github.com/sponsors/STREGAsGate),
+[Ko-fi](https://ko-fi.com/STREGAsGate),
+or
+[Patreon](https://www.patreon.com/STREGAsGate).
 
 ## Community & Followables
 [![Discord](https://img.shields.io/discord/641809158051725322?label=Hang%20Out&logo=Discord&style=social)](https://discord.gg/5JdRJhD)
