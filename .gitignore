@@ -5,7 +5,7 @@ Package.resolved
 
 #Apple
 .DS_Store
-.icloud
+*.icloud
 
 #Xcode
 *.xcuserdatad
@@ -21,4 +21,7 @@ Package.resolved
 .idea
 
 #Blender
-.blend1
+*.blend1
+
+#Tiled
+*.tiled-session
