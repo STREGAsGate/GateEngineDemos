@@ -62,22 +62,25 @@ class LevelLoadingSystem: System {
         level.insert(Transform3Component.self)
             
         // Give the level rendering geometry
-        await level.configure(RenderingGeometryComponent.self) { component in
-            
-            // Load the LevelRenderingGeometry from game's resources
-            component.insert(Geometry(path: "Resources/LevelRenderingGeometry.obj"))
-        }
+        level.insert(RenderingGeometryComponent(
+            geometries: [
+                // Load the LevelRenderingGeometry from game's resources
+                Geometry(path: "Resources/LevelRenderingGeometry.obj")
+            ]
+        ))
         
         // Give the level a material
-        await level.configure(MaterialComponent.self) { material in
-            
-            // Begin modifying material channel zero
-            material.channel(0) { channel in
+        level.insert(MaterialComponent(
+            config: { material in
                 
-                // Load the texture from our game's resoruces
-                channel.texture = Texture(path: "Resources/Atlas.png")
-            }
-        }
+                // Begin modifying material channel zero
+                material.channel(0) { channel in
+                    
+                    // Load the texture from our game's resoruces
+                    channel.texture = Texture(path: "Resources/Atlas.png")
+                }
+            })
+        )
         
         // Give the level an OctreeComponent, which allows for 3D mesh collision
         await level.configure(OctreeComponent.self) { component in
@@ -183,7 +186,7 @@ class PlayerControllerSystem: System {
         guard let playerTransform = player.component(ofType: Transform3Component.self) else {return}
 
         // Update the vertical angle reference from the Mouse
-        yAngle += Degrees(input.mouse.deltaPosition.y) * deltaTime * 50
+        yAngle += Degrees(input.mouse.deltaPosition.y) * deltaTime * 30
         
         // Update the vertical angle reference from the gamepad
         yAngle -= Degrees(input.gamePads.any.stick.right.yAxis) * deltaTime * 150 * input.gamePads.any.stick.right.pushedAmount
@@ -196,7 +199,7 @@ class PlayerControllerSystem: System {
         }
         
         // Update the horizontal angle reference from the Mouse
-        xAngle += Degrees(input.mouse.deltaPosition.x) * deltaTime * 40
+        xAngle += Degrees(input.mouse.deltaPosition.x) * deltaTime * 20
         
         // Update the horizontal angle reference from the gamepad
         xAngle += Degrees(input.gamePads.any.stick.right.xAxis) * deltaTime * 200 * input.gamePads.any.stick.right.pushedAmount
@@ -208,21 +211,21 @@ class PlayerControllerSystem: System {
         let newPlayerRotation = Quaternion(-xAngle, axis: .up)
         
         // interpolate the rotation so the movement is smooth
-        playerTransform.rotation.interpolate(to: newPlayerRotation, .linear(deltaTime * 100))
+        playerTransform.rotation.interpolate(to: newPlayerRotation, .linear(deltaTime * 30))
         
         // Update the camera so it's in the correct position and looking in the correct direction
-        await game.cameraEntity?.configure(Transform3Component.self, { cameraTransform in
+        if let cameraTransform = game.cameraEntity?[Transform3Component.self] {
             
             // Rotate the players roation by our vertical rotation giving us a rotation with both
             let newCameraRotation = playerTransform.rotation * Quaternion(-self.yAngle, axis: .right)
             
             // interpolate the rotation so the movement is smooth
-            cameraTransform.rotation.interpolate(to: newCameraRotation, .linear(deltaTime * 100))
+            cameraTransform.rotation.interpolate(to: newCameraRotation, .linear(deltaTime * 30))
             
             // Set the cameras position to 1 unit above the player
             // Becuase the player's origin is the ground and the camera is the "head"
             cameraTransform.position = playerTransform.position.addingTo(y: 1)
-        })
+        }
         
         // Move the player based on keyboard presses
         if input.keyboard.button("w").isPressed || input.keyboard.button(.up).isPressed {
