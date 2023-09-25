@@ -30,7 +30,7 @@ final class MousePickingGameDelegate: GameDelegate {
         camera.insert(CameraComponent.self)
         
         // Unwrap a Transform3Component
-        await camera.configure(Transform3Component.self) { component in
+        camera.insert(Transform3Component.self) { component in
             
             // Move the camera backward, relative to it's rotation
             component.position.move(15, toward: component.rotation.backward)
@@ -56,7 +56,7 @@ class WorldSystem: System {
             let cube = Entity()
             
             // Add a Transform3Component
-            await cube.configure(Transform3Component.self) { component in
+            cube.insert(Transform3Component.self) { component in
                 // Give this a cube a random X location in 3D space
                 let x: Float = Float((-15 ..< 15).randomElement()!)
                 // Give this a cube a random Y location in 3D space
@@ -68,20 +68,20 @@ class WorldSystem: System {
             }
             
             // Add a Collision3DComponent
-            await cube.configure(Collision3DComponent.self) { component in
+            cube.insert(Collision3DComponent.self) { component in
                 
                 // Set the collider radius to half our unit cube, which will cover the whole cube.
                 component.collider = AxisAlignedBoundingBox3D(radius: Size3(0.5))
             }
             
             // Give the entity 3D geometry
-            await cube.configure(RenderingGeometryComponent.self) { component in
+            cube.insert(RenderingGeometryComponent.self) { component in
                 
                 // Load the engine provided unit cube. A unit cube is 1x1x1 units.
                 component.insert(Geometry(as: .unitCube))
             }
             
-            await cube.configure(MaterialComponent.self) { component in
+            cube.insert(MaterialComponent.self) { component in
                 
                 // Use the system shader that renderers channel.color
                 component.fragmentShader = .materialColor

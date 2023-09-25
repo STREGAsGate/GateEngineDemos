@@ -136,7 +136,7 @@ class PlayerControllerSystem: System {
         player.insert(Physics3DComponent.self)
         
         // Give the player a collision component so we can collide with the world
-        await player.configure(Collision3DComponent.self) { component in
+        player.insert(Collision3DComponent.self) { component in
             // Dynamic collision is for objects that move and can be moved
             component.kind = .dynamic
             // Robust protection applies a more expensiove collision check

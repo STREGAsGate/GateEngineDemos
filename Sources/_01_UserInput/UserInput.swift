@@ -64,7 +64,7 @@ class UserInputSystem: System {
         if let entity = game.firstEntity(withComponent: TextComponent.self) {
             
             // Unwrap the TextComponent
-            await entity.configure(TextComponent.self) { [self] component in
+            entity.modify(TextComponent.self) { [self] component in
                 
                 // MARK: - Gamepads
                 

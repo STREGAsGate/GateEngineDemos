@@ -27,7 +27,7 @@ final class RotatingCubeGameDelegate: GameDelegate {
         camera.insert(CameraComponent.self)
         
         // Unwrap a Transform3Component
-        await camera.configure(Transform3Component.self) { component in
+        camera.insert(Transform3Component.self) { component in
             
             // Move the camera backward, relative to it's rotation, by 1 units
             component.position.move(1, toward: component.rotation.backward)
@@ -51,20 +51,20 @@ class RotatingCubeSystem: System {
         let cube = Entity()
         
         // Give the entity a 3D transform
-        await cube.configure(Transform3Component.self) {component in
+        cube.insert(Transform3Component.self) {component in
             
             // Move 1 unit forward, so it's in front of the camera
             component.position.move(1, toward: .forward)
         }
         
         // Give the entity 3D geometry
-        await cube.configure(RenderingGeometryComponent.self) { component in
+        cube.insert(RenderingGeometryComponent.self) { component in
             // Load the engine provided unit cube. A unit cube is 1x1x1 units
             component.insert(Geometry(as: .unitCube))
         }
         
         // Give the entity a material
-        await cube.configure(MaterialComponent.self) { material in
+        cube.insert(MaterialComponent.self) { material in
             // Begin modifying material channel zero
             material.channel(0) { channel in
                 // Load the engine provided placeholder texture
@@ -86,7 +86,7 @@ class RotatingCubeSystem: System {
             guard entity.hasComponent(CameraComponent.self) == false else {continue}
                         
             // Get the 3D transform component if one exists, otherwise skip to the next entity
-            await entity.configure(Transform3Component.self) {component in
+            entity.insert(Transform3Component.self) {component in
                 // Create an angle based on how much time has passed
                 let angle = Degrees(deltaTime * 15)
                 // Rotate around the forward axis

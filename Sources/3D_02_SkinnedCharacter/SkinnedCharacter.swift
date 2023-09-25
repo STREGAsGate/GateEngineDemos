@@ -31,7 +31,7 @@ final class SkinnedCharacterGameDelegate: GameDelegate {
         camera.insert(CameraComponent.self)
         
         // Unwrap a Transform3Component
-        await camera.configure(Transform3Component.self) { component in
+        camera.insert(Transform3Component.self) { component in
             
             // Move the camera backward, relative to it's rotation, by 5 units
             component.position.move(5, toward: component.rotation.backward)
@@ -65,7 +65,7 @@ class SkinnedCharacterSystem: System {
         let character = Entity()
         
         // Give the entity a 3D transform
-        await character.configure(Transform3Component.self) { component in
+        character.insert(Transform3Component.self) { component in
             
             // // Move 2 units down, so it's centered on camera
             component.position.move(2, toward: .down)
@@ -86,14 +86,14 @@ class SkinnedCharacterSystem: System {
         }
         
         // Give the entity 3D geometry
-        await character.configure(RenderingGeometryComponent.self) { component in
+        character.insert(RenderingGeometryComponent.self) { component in
             
             // Load the characters geometry from the characters source file
             component.insert(SkinnedGeometry(path: "Resources/Cat.glb"))
         }
         
         // Give the entity a material
-        await character.configure(MaterialComponent.self) { component in
+        character.insert(MaterialComponent.self) { component in
             // Begin modifying material channel zero
             component.channel(0) { channel in
                 // Load the characters texture
@@ -114,7 +114,7 @@ class SkinnedCharacterSystem: System {
             guard entity.hasComponent(CameraComponent.self) == false else {continue}
             
             // Get the 3D transform component if one exists, otherwise skip to the next entity
-            await entity.configure(Transform3Component.self) { component in
+            entity.modify(Transform3Component.self) { component in
                 
                 // Rotate the character around the up axis based on deltaTime
                 component.rotation *= Quaternion(Degrees(deltaTime * 15), axis: .up)

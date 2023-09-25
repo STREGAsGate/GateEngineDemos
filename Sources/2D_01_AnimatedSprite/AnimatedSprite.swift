@@ -49,10 +49,10 @@ class AnimatedSpriteSystem: System {
         // Create an entity with a name so we can easily find it later
         // Ideally you would find an entity based on it's components
         // But this entity wont have uniqly identifying components, so we'll name it
-        let entity = Entity(name: "Spinning Earth")
+        let entity = Entity(name: "Spinning Earth", components: [Transform2Component.self])
         
         // Unwrap a SpriteComponent
-        await entity.configure(SpriteComponent.self) { component in
+        entity.insert(SpriteComponent.self) { component in
             
             // set the size of the sprite relative to the native texture size
             component.spriteSize = Size2(width: 32, height: 32)
@@ -76,7 +76,7 @@ class AnimatedSpriteSystem: System {
         if let entity = game.entity(named: "Spinning Earth") {
             
             // Unwrap a Transform2Component
-            await entity.configure(Transform2Component.self) { component in
+            entity.modify(Transform2Component.self) { component in
                 
                 // the vertical center of our custom resolution renderTarget
                 let halfVerticalHeight: Float = 144 / 2
