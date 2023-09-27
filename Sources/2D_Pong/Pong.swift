@@ -49,17 +49,17 @@ final class PongGameDelegate: GameDelegate {
     func didFinishLaunching(game: Game, options: LaunchOptions) async {
         
         // Give the ball a primitive collider
-        ball[Collision2DComponent.self].primitive = AxisAlignedBoundingBox2D(radius: Size2(ballRadius))
+        ball[Collision2DComponent.self].collider = AxisAlignedBoundingBox2D(radius: Size2(ballRadius))
         // Add the ball to the game
         game.insertEntity(ball)
         
         // Give the player a primitive collider
-        paddle1[Collision2DComponent.self].primitive = AxisAlignedBoundingBox2D(radius: paddleRadius)
+        paddle1[Collision2DComponent.self].collider = AxisAlignedBoundingBox2D(radius: paddleRadius)
         // Add the player to the game
         game.insertEntity(paddle1)
         
         // Give the computer/AI a primitive collider
-        paddle2[Collision2DComponent.self].primitive = AxisAlignedBoundingBox2D(radius: paddleRadius)
+        paddle2[Collision2DComponent.self].collider = AxisAlignedBoundingBox2D(radius: paddleRadius)
         // Reduce how quickly the computer/AI can start moving
         paddle2[Physics2DComponent.self].acceleration = 0.8
         // Reduce how quickly the computer/AI can stop
@@ -188,9 +188,9 @@ final class PongGameLogicSystem: System {
             ballPhysics.velocity = Size2(direction.reflected(off: .up))
         }
         
-        let ballCollider = ball[Collision2DComponent.self].primitive!
+        let ballCollider = ball[Collision2DComponent.self].collider
         
-        let p1Collider = paddle1[Collision2DComponent.self].primitive!
+        let p1Collider = paddle1[Collision2DComponent.self].collider
         // If the ball intersects the player
         if let interpenetration = p1Collider.interpenetration(comparing: ballCollider), interpenetration.isColiding {
             // Move the ball back outside of the paddle so it never appears inside the paddle on screen
@@ -199,7 +199,7 @@ final class PongGameLogicSystem: System {
             ballPhysics.velocity = Size2(direction.reflected(off: interpenetration.direction))
         }
         
-        let p2Collider = paddle2[Collision2DComponent.self].primitive!
+        let p2Collider = paddle2[Collision2DComponent.self].collider
         // If the ball intersects the comouter/AI
         if let interpenetration = p2Collider.interpenetration(comparing: ballCollider), interpenetration.isColiding {
             // Move the ball back outside of the paddle so it never appears inside the paddle on screen
@@ -290,7 +290,7 @@ final class PongRenderingSystem: RenderingSystem {
         for entity in game.entities {
             
             // Grab the collider from the entity if there is one
-            if let aabb = entity.component(ofType: Collision2DComponent.self)?.primitive {
+            if let aabb = entity.component(ofType: Collision2DComponent.self)?.collider.boundingBox {
                 
                 // Use the colliders rect function to create a rect representing the collider
                 // We add it to the canvas at zero becuase the rect already has the correct position
