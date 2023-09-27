@@ -225,7 +225,7 @@ final class RoomLoadingSystem: System {
         fatalError("init() has not been implemented")
     }
 
-    // Give our system a phse to be sorted into.
+    // Give our system a phase to be sorted into.
     // The updating phase is performed before the simulation making it a good choice for loading.
     override class var phase: System.Phase { .updating }
 }
@@ -485,7 +485,7 @@ final class RoomSystem: System {
                         triggers.currentPlayerCoordinate = playerCoordinate
                         if let index = triggers.coordinates.firstIndex(where: {$0 == playerCoordinate}) {
                             do {
-                                // If the player stepped on the trigger, execute the action GravityClosure. 
+                                // If the player stepped on the trigger, execute the action GravityClosure.
                                 // This will run the closure within the gravity script prvided to a call to `setTrigger()`
                                 try triggers.actions[index].run()
                             }catch{
@@ -642,7 +642,7 @@ final class JRPGCollisionSystem: System {
     // A finite amount of colliders we'll use to check if we're hitting any tiles
     // Well change these each time we want to check for collisions.
     var tileColliders: [AxisAlignedBoundingBox2D] = Array(repeating: AxisAlignedBoundingBox2D(radius: Size2(8)), count: 6)
-    // A collider to use for any character. Well change this each time we want to check for a collision.
+    // A collider to use for any character. We'll change this each time we want to check for a collision.
     var playerCollider: BoundingEllipsoid2D = BoundingEllipsoid2D(offset: Position2(0,4), radius: Size2(8, 4))
     // A collection of points we'll put around the character to find tiles we might collide with
     var tileLocators: [Position2] = []
@@ -724,7 +724,7 @@ final class JRPGCollisionSystem: System {
             if let interpenetration = playerCollider.interpenetration(comparing: tileCollider), interpenetration.isColiding {
                 // Move the playerCollider out of the tileCollider
                 // The interpenetration.depth is a value indicating how far into tileCollider the playerCollider is
-                // We'll negate it to move it back out
+                // We'll negate it to move the playerCollider away from the tileCollider
                 // The interpenetration.direction is the direction playerCollider would naturally move to get out of the tileCollider
                 playerCollider.center.move(-interpenetration.depth, toward: interpenetration.direction)
                 // Update the player location to match the collision changes we just did
@@ -748,7 +748,7 @@ final class JRPGRenderingSystem: RenderingSystem {
     lazy var renderTarget = RenderTarget()
     
     override func render(game: Game, window: Window, withTimePassed deltaTime: Float) {
-        // Resize the render target to be 240 high and with a width to match the windows's aspect ration
+        // Resize the render target to be 240 high and with a width to match the windows's aspect ratio
         var width = 240 * window.size.aspectRatio
         width -= width.truncatingRemainder(dividingBy: 2)
         renderTarget.size = Size2(width: width, height: 240)
@@ -794,7 +794,7 @@ final class JRPGRenderingSystem: RenderingSystem {
             return floor(position)
         }())
         
-        // A variable to make drawing multiple layers slightly more efficinty
+        // A variable to make drawing multiple layers more efficiency
         var roomIsMultiLayer = false
         
         // Create a material for the tileMap
@@ -827,7 +827,7 @@ final class JRPGRenderingSystem: RenderingSystem {
                 let collisionSystem = game.system(ofType: JRPGCollisionSystem.self)
                 // Loop through each tile collider
                 for tileCollider in collisionSystem.tileColliders {
-                    // A a rect to the canvas representing the tile collider
+                    // Add a rect to the canvas representing the tile collider
                     canvas.insert(
                         tileCollider.rect,
                         color: .lightRed,
@@ -837,7 +837,7 @@ final class JRPGRenderingSystem: RenderingSystem {
                 }
                 // Get the player collider
                 let playerCollider = collisionSystem.playerCollider.boundingBox
-                // A a rect to the canvas representing the player collider
+                // Add a rect to the canvas representing the player collider
                 canvas.insert(
                     playerCollider.rect,
                     color: .white,
@@ -880,9 +880,9 @@ final class JRPGRenderingSystem: RenderingSystem {
             // Create a rect for half the curtain
             let rect = Rect(position: .zero, size: Size2(window.pointSize.width, (window.pointSize.height / 2) * curtainProgress))
 
-            // A the curtain rect to the canvas at the top of the creen
+            // A the curtain rect to the canvas at the top of the screen
             canvas.insert(rect, color: .black, at: .zero)
-            // A the curtain rect to the canvas at the bottom of the creen
+            // A the curtain rect to the canvas at the bottom of the screen
             canvas.insert(rect, color: .black, at: Position2(0, window.pointSize.height - rect.height))
             // Add the canvas to the window
             window.insert(canvas)
