@@ -659,6 +659,13 @@ final class JRPGCollisionSystem: System {
         
         // Move the players collider to where the player currently is
         playerCollider.center = player.position2
+        
+        // Loop through ever tileCollider
+        for index in tileColliders.indices {
+            // Move the collider off the map
+            // This will prevent stale colliders from being in the wrong location
+            tileColliders[index].center = Position2(-32, -32)
+        }
 
         // Use the playerCollider to create piints moved 2 units outward.
         // This creates positions at each corner of the box, but moved away from it's center by 2 units
