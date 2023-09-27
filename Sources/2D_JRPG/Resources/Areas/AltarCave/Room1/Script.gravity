@@ -1,0 +1,39 @@
+
+extern func getPlayerCoordinate() {}
+extern func setPlayerCoordinate(coordinate: List) {}
+extern func setPlayerAnimation(animationIndex: Int) {}
+extern func setTrigger(coordinate: List, closure: Closure) {}
+extern func setInteraction(coordinate: List, closure: Closure) {}
+extern func setTile(coordinate: List, layer: Int, tileID: Int) {}
+extern func setTileAnimation(coordinate: List, layer: Int, tiles: List, duration: Double) {}
+extern func load(area: String, room: String, playerCoordinate: List, animationIndex: Int) {}
+
+func collapseWall() {
+    setTile([14, 2], 0, 32);
+    setTile([14, 3], 0, 32);
+    setTile([14, 4], 0, 34);
+}
+
+func main() {
+    setTrigger([21, 2], func() {
+        load("AltarCave", "Room2", [18, 29], 0);
+    })
+    
+    // Rock Button: Wall Collapse
+    setInteraction([10, 6], func() {
+        collapseWall();
+    })
+    setInteraction([17, 4], func() {
+        collapseWall();
+    })
+    
+    setInteraction([8, 12], func() {
+        setTile([8, 12], 0, 24);
+    })
+    setInteraction([13, 12], func() {
+        setTile([13, 12], 0, 24);
+    })
+    setInteraction([16, 6], func() {
+        setTile([16, 6], 0, 24);
+    })
+}

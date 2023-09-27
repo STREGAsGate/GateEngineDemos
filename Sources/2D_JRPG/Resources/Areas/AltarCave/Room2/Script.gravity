@@ -1,0 +1,32 @@
+
+extern func getPlayerCoordinate() {}
+extern func setPlayerCoordinate(coordinate: List) {}
+extern func setPlayerAnimation(animationIndex: Int) {}
+extern func setTrigger(coordinate: List, closure: Closure) {}
+extern func setInteraction(coordinate: List, closure: Closure) {}
+extern func setTile(coordinate: List, layer: Int, tileID: Int) {}
+extern func setTileAnimation(coordinate: List, layer: Int, tiles: List, duration: Double) {}
+extern func load(area: String, room: String, playerCoordinate: List, animationIndex: Int) {}
+
+func main() {
+    setTrigger([2, 5], func() {
+        setTile([2, 5], 0, 25);
+        load("AltarCave", "Room3", [15, 22], 0);
+    })
+    setTrigger([18, 30], func() {
+        load("AltarCave", "Room1", [21, 3], 1);
+    })
+    
+    setInteraction([13, 9], func() {
+        setTile([13, 9], 0, 24);
+    })
+    setInteraction([7, 26], func() {
+        setTile([7, 26], 0, 24);
+    })
+    setInteraction([28, 24], func() {
+        setTile([28, 24], 0, 24);
+    })
+    setInteraction([30, 8], func() {
+        setTile([30, 8], 0, 24);
+    })
+}

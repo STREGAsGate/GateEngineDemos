@@ -56,6 +56,48 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2D_01_AnimatedSprite"
+               BuildableName = "2D_01_AnimatedSprite"
+               BlueprintName = "2D_01_AnimatedSprite"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2D_Pong"
+               BuildableName = "2D_Pong"
+               BlueprintName = "2D_Pong"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2D_JRPG"
+               BuildableName = "2D_JRPG"
+               BlueprintName = "2D_JRPG"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "3D_01_RotatingCube"
                BuildableName = "3D_01_RotatingCube"
                BlueprintName = "3D_01_RotatingCube"
@@ -101,20 +143,6 @@
                BlueprintIdentifier = "3D_FirstPerson"
                BuildableName = "3D_FirstPerson"
                BlueprintName = "3D_FirstPerson"
-               ReferencedContainer = "container:">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2D_01_AnimatedSprite"
-               BuildableName = "2D_01_AnimatedSprite"
-               BlueprintName = "2D_01_AnimatedSprite"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>

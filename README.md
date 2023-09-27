@@ -22,6 +22,8 @@ Save and restore game state.
 An animated sprite loaded from assets.
 * [Pong](Sources/2D_Pong/Pong.swift): 
 A virtual table tenis clone.
+* [JRPG](Sources/2D_JRPG/JRPG.swift): 
+Uses Sprite, TileMap, Scripting, and StateMachine.
 
 3D
 1. [Rotating Cube](Sources/3D_01_RotatingCube/RotatingCube.swift): 
