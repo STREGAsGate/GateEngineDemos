@@ -435,7 +435,7 @@ final class RoomSystem: System {
                     TileMap.Tile(id: $0.asInt(), options: [])
                 })
                 // We exppect the argument 3 to be a Double
-                let duration = args[3].asDouble()
+                let duration = args[3].asFloat()
                 
                 // Add the tilemap animation to the rooms tilemap
                 self.entity[TileMapComponent.self].layers[layer].animations.append(
@@ -520,7 +520,7 @@ enum Player {
             entity[Physics2DComponent.self].velocity = .zero
         }
         
-        func update(for entity: Entity, inGame game: Game, input: HID, withTimePassed deltaTime: Double) {
+        func update(for entity: Entity, inGame game: Game, input: HID, withTimePassed deltaTime: Float) {
             // A variable to store if any action input was pressed
             var actionWasPressed = false
             
@@ -586,7 +586,7 @@ enum Player {
             entity[SpriteComponent.self].activeAnimation?.progress = 0.5
         }
         
-        func update(for entity: Entity, inGame game: Game, input: HID, withTimePassed deltaTime: Double) {
+        func update(for entity: Entity, inGame game: Game, input: HID, withTimePassed deltaTime: Float) {
             // Check for inputs and move the character in the approproite direction
             if input.keyboard.anyKeyIsPressed(in: ["a", .left]) || input.gamePads.any.dpad.left.isPressed {
                 // Use the left facing animation
