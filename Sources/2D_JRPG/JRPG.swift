@@ -513,7 +513,7 @@ enum Player {
     final class IdleState: State {
         // apply() is called when the state becomes current
         // This is similar to `setup()` for a System
-        func apply(to entity: Entity, previousState: State, game: Game, input: HID) {
+        func apply(to entity: Entity, previousState: some State, game: Game, input: HID) {
             // Stop animations
             entity[SpriteComponent.self].playbackState = .stop
             // Stop movement
@@ -577,7 +577,7 @@ enum Player {
         
         // apply() is called when the state becomes current
         // This is similar to `setup()` for a System
-        func apply(to entity: Entity, previousState: State, game: Game, input: HID) {
+        func apply(to entity: Entity, previousState: some State, game: Game, input: HID) {
             // Begin playing animation
             entity[SpriteComponent.self].playbackState = .play
             // Start the animation half way through
@@ -616,7 +616,7 @@ enum Player {
         }
         
         // canBecomeCurrentState() determines if this state is able to become the current state
-        static func canBecomeCurrentState(for entity: Entity, from currentState: State, game: Game, input: HID) -> Bool {
+        static func canBecomeCurrentState(for entity: Entity, from currentState: some State, game: Game, input: HID) -> Bool {
             // If any input is pressed we can become the current State
             return input.keyboard.anyKeyIsPressed(in: ["w", "s", "a", "d", .up, .down, .left, .right])
             || input.gamePads.any.dpad.isPressed
@@ -763,7 +763,7 @@ final class JRPGRenderingSystem: RenderingSystem {
         guard tileMapComponent.tileMap.state == .ready else {return}
         
         // Create a canvas
-        var canvas = Canvas()
+        var canvas = Canvas(estimatedCommandCount: 15)
         
         // Set the canvas's view origin.
         // This will move the "camera" of the canvas
