@@ -3,32 +3,28 @@
 
 import PackageDescription
 
-let swiftSettings: [SwiftSetting] = {
-    var settings: [SwiftSetting] = []
-    #if os(Windows)
-    settings.append(contentsOf: [
-        // This is required on Windows due to a bug
-        // SR-12683 https://github.com/apple/swift/issues/55127
-        .unsafeFlags(["-parse-as-library"], .when(platforms: [.windows])),
-        
-        // These flags tell Windows that the executable is UI based (shows a window) and hides the command prompt
-        .unsafeFlags(["-Xfrontend", "-entry-point-function-name"], .when(platforms: [.windows], configuration: .release)),
-        .unsafeFlags(["-Xfrontend", "wWinMain"], .when(platforms: [.windows], configuration: .release)),
-    ])
-    #endif
-    return settings
-}()
+let swiftSettings: [SwiftSetting] = [
+    // Use whole cross optimization in release builds
+    .unsafeFlags(["-cross-module-optimization"], .when(configuration: .release)),
+    // Remove runtime checks in release builds
+    .unsafeFlags(["-Ounchecked"], .when(configuration: .release)),
+    
+    // This is required on Windows due to a bug
+    // #55127 https://github.com/apple/swift/issues/55127
+    .unsafeFlags(["-parse-as-library"], .when(platforms: [.windows])),
+    
+    // These flags tell Windows that the executable is UI based (shows a window) and hides the command prompt
+    .unsafeFlags(["-Xfrontend", "-entry-point-function-name"], .when(platforms: [.windows], configuration: .release)),
+    .unsafeFlags(["-Xfrontend", "wWinMain"], .when(platforms: [.windows], configuration: .release)),
+]
 
-let linkerSettings: [LinkerSetting] = {
-    var settings: [LinkerSetting] = []
-    #if os(Windows)
-    settings.append(contentsOf: [
-        // These flags tell Windows that the executable is UI based (shows a window) and hides the command prompt
-        .unsafeFlags(["-Xlinker", "/SUBSYSTEM:WINDOWS"], .when(platforms: [.windows], configuration: .release)),
-    ])
-    #endif
-    return settings
-}()
+let linkerSettings: [LinkerSetting] = [
+    // Strip dead code in release builds
+    .unsafeFlags(["-dead_strip"], .when(configuration: .release)),
+
+    // These flags tell Windows that the executable is UI based (shows a window) and hides the command prompt
+    .unsafeFlags(["-Xlinker", "/SUBSYSTEM:WINDOWS"], .when(platforms: [.windows], configuration: .release)),
+]
 
 let package: Package = Package(
     name: "GateEngineDemos",
