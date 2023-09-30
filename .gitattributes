@@ -1,2 +1,4 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+# Gravity files must have lf line endings
+*.gravity      eol=lf
