@@ -1,4 +1,4 @@
-# Gate Engine Demos
+# GateEngine Demos
 Example projects for [GateEngine](https://github.com/STREGAsGate/GateEngine), a cross platform game engine for Swift developers.
 
 [![CI](https://github.com/STREGAsGate/GateEngineDemos/actions/workflows/ci.yml/badge.svg)](https://github.com/STREGAsGate/GateEngineDemos/actions/workflows/ci.yml)
@@ -35,7 +35,7 @@ Changes the color of an object under the mouse cursor.
 * [First Person](Sources/3D_FirstPerson/FirstPerson.swift): 
 Move around a level with mouse and keyboard controls.
 
-# Support Gate Engine!
+# Support GateEngine!
 If you appreciate this project, and want it to continue, then please consider putting some currency into it.</br>
 Every little bit helps! Support With:
 [GitHub](https://github.com/sponsors/STREGAsGate),
