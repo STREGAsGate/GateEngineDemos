@@ -1,4 +1,4 @@
-// swift-tools-version: 5.8
+// swift-tools-version:5.8
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -20,7 +20,7 @@ let swiftSettings: [SwiftSetting] = [
 
 let linkerSettings: [LinkerSetting] = [
     // Strip dead code in release builds
-    .unsafeFlags(["-dead_strip"], .when(configuration: .release)),
+    .unsafeFlags(["-dead_strip"], .when(platforms: [.windows, .macOS, .linux, .iOS, .tvOS], configuration: .release)),
 
     // These flags tell Windows that the executable is UI based (shows a window) and hides the command prompt
     .unsafeFlags(["-Xlinker", "/SUBSYSTEM:WINDOWS"], .when(platforms: [.windows], configuration: .release)),
@@ -44,7 +44,7 @@ let package: Package = Package(
         .executable(name: "G_03_SavingState", targets: ["G_03_SavingState"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/STREGAsGate/GateEngine.git", branch: "main"),
+        .package(url: "https://github.com/STREGAsGate/GateEngine.git", .upToNextMajor(from: "0.1.0")),
     ],
     targets: [
         .executableTarget(name: "2D_01_AnimatedSprite",
