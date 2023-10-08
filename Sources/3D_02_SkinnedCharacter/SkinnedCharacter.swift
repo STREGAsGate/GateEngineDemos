@@ -16,7 +16,7 @@ final class SkinnedCharacterGameDelegate: GameDelegate {
     // didFinishLaunching() is executed immediatley after the game is ready to start
     func didFinishLaunching(game: Game, options: LaunchOptions) async {
         // Add the engine provided RigSystem so our character can animate
-        game.insertSystem(Rig3DSystem.self)
+        game.insertSystem(RigSystem.self)
         
         // Add the skinned character update system to the game. System implementation is below
         game.insertSystem(SkinnedCharacterSystem.self)

@@ -44,11 +44,7 @@ let package: Package = Package(
         .executable(name: "G_03_SavingState", targets: ["G_03_SavingState"]),
     ],
     dependencies: [
-        // For development purposes GateEngineDemos works with the GateEngine "main" branch
-        // Your own project should stick to stable version releases like this instead:
-        //.package(url: "https://github.com/STREGAsGate/GateEngine.git", .upToNextMajor(from: "0.1.0")),
-        
-        .package(url: "https://github.com/STREGAsGate/GateEngine.git", branch: "main"),
+        .package(url: "https://github.com/STREGAsGate/GateEngine.git", .upToNextMajor(from: "0.1.0")),
     ],
     targets: [
         .executableTarget(name: "2D_01_AnimatedSprite",
