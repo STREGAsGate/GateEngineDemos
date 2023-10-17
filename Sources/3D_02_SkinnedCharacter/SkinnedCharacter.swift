@@ -16,7 +16,7 @@ final class SkinnedCharacterGameDelegate: GameDelegate {
     // didFinishLaunching() is executed immediatley after the game is ready to start
     func didFinishLaunching(game: Game, options: LaunchOptions) async {
         // Add the engine provided RigSystem so our character can animate
-        game.insertSystem(RigSystem.self)
+        game.insertSystem(Rig3DSystem.self)
         
         // Add the skinned character update system to the game. System implementation is below
         game.insertSystem(SkinnedCharacterSystem.self)
@@ -72,17 +72,16 @@ class SkinnedCharacterSystem: System {
         }
         
         // Give the entity rig
-        await character.configure(Rig3DComponent.self) { component in
+        character.insert(Rig3DComponent.self) { component in
             
             // Load the characters skeleton from the characters source file
-            component.skeleton = try! await Skeleton(path: "Resources/Cat.glb")
+            component.skeleton = Skeleton(path: "Resources/Cat.glb")
             
             // Load an animation set from the characters source file
-            let animations = [try! await SkeletalAnimation(path: "Resources/Cat.glb")]
-            component.animationSet = animations
+            component.animationSet = [SkeletalAnimation(path: "Resources/Cat.glb")]
             
             // Convert the first skeletal animation into a repeating rig animation
-            component.activeAnimation = Rig3DComponent.Animation(animations[0], repeats: true)
+            component.activeAnimation = Rig3DAnimation(component.animationSet![0], repeats: true)
         }
         
         // Give the entity 3D geometry
