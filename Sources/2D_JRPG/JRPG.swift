@@ -92,7 +92,7 @@ final class RoomTriggerComponent: Component {
         self.actions.append(action)
     }
     
-    static var componentID: ComponentID = ComponentID()
+    static let componentID: ComponentID = ComponentID()
 }
 
 // A component to store interactions.
@@ -110,7 +110,7 @@ final class RoomInteractionComponent: Component {
         self.actions.append(action)
     }
     
-    static var componentID: ComponentID = ComponentID()
+    static let componentID: ComponentID = ComponentID()
 }
 
 // A system to handle trnasitions between rooms
