@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		5677A85B2A27999F00BD0456 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5677A85A2A27999F00BD0456 /* Assets.xcassets */; };
 		5677A86B2A279C6400BD0456 /* GateEngine in Frameworks */ = {isa = PBXBuildFile; productRef = 5677A86A2A279C6300BD0456 /* GateEngine */; };
-		567C4F632B491A4200A33243 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5677A85A2A27999F00BD0456 /* Assets.xcassets */; };
 		569C5E5F2A32C58C009CC52B /* GateEngine in Frameworks */ = {isa = PBXBuildFile; productRef = 569C5E5A2A32C58C009CC52B /* GateEngine */; };
 		569C5E612A32C58C009CC52B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5677A85A2A27999F00BD0456 /* Assets.xcassets */; };
 		569C5E672A32C5A2009CC52B /* MultipleWindows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569C5E662A32C5A2009CC52B /* MultipleWindows.swift */; };
@@ -18,9 +17,6 @@
 		56D155562A2A491700FDB7AC /* UserInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5677A8652A279C1000BD0456 /* UserInput.swift */; };
 		56D155582A2A492B00FDB7AC /* AnimatedSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D155572A2A492B00FDB7AC /* AnimatedSprite.swift */; };
 		56D1555A2A2A493500FDB7AC /* Resources in Resources */ = {isa = PBXBuildFile; fileRef = 56D155592A2A493500FDB7AC /* Resources */; };
-		56D23EDB2B44F25000873FC1 /* GateEngine in Frameworks */ = {isa = PBXBuildFile; productRef = 56D23ED62B44F25000873FC1 /* GateEngine */; };
-		56D23EE42B44F28700873FC1 /* PixelArtApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D23EE32B44F28700873FC1 /* PixelArtApp.swift */; };
-		56FFB0522B491F310008F5AE /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 56FFB0512B491F310008F5AE /* Assets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,14 +25,11 @@
 		5677A8652A279C1000BD0456 /* UserInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserInput.swift; path = ../../Sources/G_01_UserInput/UserInput.swift; sourceTree = "<group>"; };
 		5677A8682A279C4200BD0456 /* GateEngineDemos */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = GateEngineDemos; path = ..; sourceTree = "<group>"; };
 		569C5E652A32C58C009CC52B /* 02_MultipleWindows.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 02_MultipleWindows.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		569C5E662A32C5A2009CC52B /* MultipleWindows.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MultipleWindows.swift; path = ../../Sources/_02_MultipleWindows/MultipleWindows.swift; sourceTree = "<group>"; };
+		569C5E662A32C5A2009CC52B /* MultipleWindows.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MultipleWindows.swift; path = ../../Sources/G_02_MultipleWindows/MultipleWindows.swift; sourceTree = "<group>"; };
 		56D155552A2A490200FDB7AC /* 2D_01_AnimatedSprite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 2D_01_AnimatedSprite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56D155572A2A492B00FDB7AC /* AnimatedSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnimatedSprite.swift; path = ../Sources/2D_01_AnimatedSprite/AnimatedSprite.swift; sourceTree = "<group>"; };
 		56D155592A2A493500FDB7AC /* Resources */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Resources; path = ../Sources/2D_01_AnimatedSprite/Resources; sourceTree = "<group>"; };
-		56D23EE12B44F25000873FC1 /* G_PixelArtApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = G_PixelArtApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		56D23EE32B44F28700873FC1 /* PixelArtApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PixelArtApp.swift; path = ../Sources/G_PixelArtApp/PixelArtApp.swift; sourceTree = "<group>"; };
 		56D23EE92B44F36600873FC1 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		56FFB0512B491F310008F5AE /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Assets; path = ../Sources/G_PixelArtApp/Assets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,14 +57,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		56D23EDA2B44F25000873FC1 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				56D23EDB2B44F25000873FC1 /* GateEngine in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -82,7 +67,6 @@
 				56D155472A2A487800FDB7AC /* Shared */,
 				5677A8552A27999E00BD0456 /* G_01_UserInput */,
 				56A7EEF52A32C55D00D4FAA0 /* G_02_MultipleWindows */,
-				56D23EE22B44F27500873FC1 /* G_PixelArtApp */,
 				56D155482A2A48ED00FDB7AC /* 2D_01_AnimatedSprite */,
 				5677A8672A279C4200BD0456 /* Packages */,
 				5677A8542A27999E00BD0456 /* Products */,
@@ -95,7 +79,6 @@
 				5677A8532A27999E00BD0456 /* 01_UserInput.app */,
 				56D155552A2A490200FDB7AC /* 2D_01_AnimatedSprite.app */,
 				569C5E652A32C58C009CC52B /* 02_MultipleWindows.app */,
-				56D23EE12B44F25000873FC1 /* G_PixelArtApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -139,15 +122,6 @@
 				56D155592A2A493500FDB7AC /* Resources */,
 			);
 			name = 2D_01_AnimatedSprite;
-			sourceTree = "<group>";
-		};
-		56D23EE22B44F27500873FC1 /* G_PixelArtApp */ = {
-			isa = PBXGroup;
-			children = (
-				56D23EE32B44F28700873FC1 /* PixelArtApp.swift */,
-				56FFB0512B491F310008F5AE /* Assets */,
-			);
-			name = G_PixelArtApp;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -213,26 +187,6 @@
 			productReference = 56D155552A2A490200FDB7AC /* 2D_01_AnimatedSprite.app */;
 			productType = "com.apple.product-type.application";
 		};
-		56D23ED52B44F25000873FC1 /* G_PixelArtApp */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 56D23EDE2B44F25000873FC1 /* Build configuration list for PBXNativeTarget "G_PixelArtApp" */;
-			buildPhases = (
-				56D23ED82B44F25000873FC1 /* Sources */,
-				56D23EDA2B44F25000873FC1 /* Frameworks */,
-				56D23EDC2B44F25000873FC1 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = G_PixelArtApp;
-			packageProductDependencies = (
-				56D23ED62B44F25000873FC1 /* GateEngine */,
-			);
-			productName = GateEngineDemos;
-			productReference = 56D23EE12B44F25000873FC1 /* G_PixelArtApp.app */;
-			productType = "com.apple.product-type.application";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -268,7 +222,6 @@
 				5677A8522A27999E00BD0456 /* 01_UserInput */,
 				569C5E592A32C58C009CC52B /* 02_MultipleWindows */,
 				56D155492A2A490200FDB7AC /* 2D_01_AnimatedSprite */,
-				56D23ED52B44F25000873FC1 /* G_PixelArtApp */,
 			);
 		};
 /* End PBXProject section */
@@ -299,15 +252,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		56D23EDC2B44F25000873FC1 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				567C4F632B491A4200A33243 /* Assets.xcassets in Resources */,
-				56FFB0522B491F310008F5AE /* Assets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -332,14 +276,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				56D155582A2A492B00FDB7AC /* AnimatedSprite.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		56D23ED82B44F25000873FC1 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				56D23EE42B44F28700873FC1 /* PixelArtApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -562,18 +498,6 @@
 			};
 			name = Release;
 		};
-		56D23EDF2B44F25000873FC1 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-			};
-			name = Debug;
-		};
-		56D23EE02B44F25000873FC1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -613,15 +537,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		56D23EDE2B44F25000873FC1 /* Build configuration list for PBXNativeTarget "G_PixelArtApp" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				56D23EDF2B44F25000873FC1 /* Debug */,
-				56D23EE02B44F25000873FC1 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -649,14 +564,6 @@
 				minimumVersion = 0.0.2;
 			};
 		};
-		56D23ED72B44F25000873FC1 /* XCRemoteSwiftPackageReference "GateEngine" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/STREGAsGate/GateEngine.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.0.2;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -673,11 +580,6 @@
 		56D1554A2A2A490200FDB7AC /* GateEngine */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 56D1554B2A2A490200FDB7AC /* XCRemoteSwiftPackageReference "GateEngine" */;
-			productName = GateEngine;
-		};
-		56D23ED62B44F25000873FC1 /* GateEngine */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 56D23ED72B44F25000873FC1 /* XCRemoteSwiftPackageReference "GateEngine" */;
 			productName = GateEngine;
 		};
 /* End XCSwiftPackageProductDependency section */
