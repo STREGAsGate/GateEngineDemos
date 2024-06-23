@@ -41,7 +41,7 @@ let package: Package = Package(
         .executable(name: "G_03_SavingState", targets: ["G_03_SavingState"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/STREGAsGate/GateEngine.git", branch: "Release-0.2"),
+        .package(url: "https://github.com/STREGAsGate/GateEngine.git", .upToNextMajor(from: "0.2.0")),
         .package(url: "https://github.com/swiftwasm/carton", from: "1.0.0"),
     ],
     targets: [
