@@ -20,7 +20,8 @@ let swiftSettings: [SwiftSetting] = [
 
 let linkerSettings: [LinkerSetting] = [
     // Strip dead code in release builds
-    .unsafeFlags(["-dead_strip"], .when(platforms: [.windows, .macOS, .linux, .iOS, .tvOS], configuration: .release)),
+    // Not available on Windows
+    .unsafeFlags(["-dead_strip"], .when(platforms: [.macOS, .linux, .iOS, .tvOS], configuration: .release)),
 
     // These flags tell Windows that the executable is UI based (shows a window) and hides the command prompt
     .unsafeFlags(["-Xlinker", "/SUBSYSTEM:WINDOWS"], .when(platforms: [.windows], configuration: .release)),
