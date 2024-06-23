@@ -1,4 +1,4 @@
-// swift-tools-version:5.8
+// swift-tools-version:5.10
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -44,7 +44,8 @@ let package: Package = Package(
         .executable(name: "G_03_SavingState", targets: ["G_03_SavingState"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/STREGAsGate/GateEngine.git", .upToNextMajor(from: "0.1.0")),
+        .package(url: "https://github.com/STREGAsGate/GateEngine.git", branch: "release-0.2"),
+        .package(url: "https://github.com/swiftwasm/carton", from: "1.0.0"),
     ],
     targets: [
         .executableTarget(name: "2D_01_AnimatedSprite",
