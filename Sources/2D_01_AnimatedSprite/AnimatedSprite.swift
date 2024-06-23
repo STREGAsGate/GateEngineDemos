@@ -58,7 +58,7 @@ class AnimatedSpriteSystem: System {
             component.spriteSize = Size2(width: 32, height: 32)
             
             // load the SpriteSheet from a png file
-            component.spriteSheet = SpriteSheet(path: "Resources/Earth rotating 32 x 32.png")
+            component.spriteSheet = SpriteSheet(path: "Resources/Earth rotating 32 x 32.png", sizeHint: Size2(32))
             
             // create an animation that plays at 60fps,
             // we could also create the animation with an explicit duration
