@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3D_01_RotatingCube"
-               BuildableName = "3D_01_RotatingCube"
-               BlueprintName = "3D_01_RotatingCube"
-               ReferencedContainer = "container:">
+               BlueprintIdentifier = "56D23ED52B44F25000873FC1"
+               BuildableName = "G_PixelArtApp.app"
+               BlueprintName = "G_PixelArtApp"
+               ReferencedContainer = "container:GateEngineDemos.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -38,16 +38,15 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
-      allowLocationSimulation = "YES"
-      viewDebuggingEnabled = "No">
+      allowLocationSimulation = "YES">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3D_01_RotatingCube"
-            BuildableName = "3D_01_RotatingCube"
-            BlueprintName = "3D_01_RotatingCube"
-            ReferencedContainer = "container:">
+            BlueprintIdentifier = "56D23ED52B44F25000873FC1"
+            BuildableName = "G_PixelArtApp.app"
+            BlueprintName = "G_PixelArtApp"
+            ReferencedContainer = "container:GateEngineDemos.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -61,10 +60,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3D_01_RotatingCube"
-            BuildableName = "3D_01_RotatingCube"
-            BlueprintName = "3D_01_RotatingCube"
-            ReferencedContainer = "container:">
+            BlueprintIdentifier = "56D23ED52B44F25000873FC1"
+            BuildableName = "G_PixelArtApp.app"
+            BlueprintName = "G_PixelArtApp"
+            ReferencedContainer = "container:GateEngineDemos.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

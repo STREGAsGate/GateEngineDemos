@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1430"
+   LastUpgradeVersion = "1510"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -143,6 +143,20 @@
                BlueprintIdentifier = "G_02_MultipleWindows"
                BuildableName = "G_02_MultipleWindows"
                BlueprintName = "G_02_MultipleWindows"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "G_04_UserInterface"
+               BuildableName = "G_04_UserInterface"
+               BlueprintName = "G_04_UserInterface"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
