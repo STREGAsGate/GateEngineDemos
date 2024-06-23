@@ -179,7 +179,7 @@ final class RoomLoadingSystem: System {
                 )
                 // Give the player the spawn animation index
                 // This will change which direction the player is facing
-                player[SpriteComponent.self].activeAnimationIndex = activeAnimationIndex
+                player[SpriteComponent.self].setAnimation(activeAnimationIndex)
             }
             // Move to the next loading phase
             phase = .waitForRoomToLoad
@@ -329,7 +329,7 @@ final class RoomSystem: System {
                     // Get the first argument which we expect to be a Swift.Int
                     // Set the Int as the players active animation
                     // This will change the direction the player is facing
-                    player[SpriteComponent.self].activeAnimationIndex = args[0].getInt()
+                    player[SpriteComponent.self].setAnimation(args[0].getInt())
                 }
             }
             
@@ -590,23 +590,23 @@ enum Player {
             // Check for inputs and move the character in the approproite direction
             if input.keyboard.anyKeyIsPressed(in: ["a", .left]) || input.gamePads.any.dpad.left.isPressed {
                 // Use the left facing animation
-                entity[SpriteComponent.self].activeAnimationIndex = 2
+                entity[SpriteComponent.self].setAnimation(2)
                 // Move the character left
                 entity[Physics2DComponent.self].velocity = Size2(Direction2.left) * 0.01
             }else if input.keyboard.anyKeyIsPressed(in: ["d", .right]) || input.gamePads.any.dpad.right.isPressed {
                 // Use the right facing animation
-                entity[SpriteComponent.self].activeAnimationIndex = 3
+                entity[SpriteComponent.self].setAnimation(3)
                 // Move the character right
                 entity[Physics2DComponent.self].velocity = Size2(Direction2.right) * 0.01
             }else if input.keyboard.anyKeyIsPressed(in: ["w", .up]) || input.gamePads.any.dpad.up.isPressed {
                 // Use the up facing animation
-                entity[SpriteComponent.self].activeAnimationIndex = 0
+                entity[SpriteComponent.self].setAnimation(0)
                 // Move the character up.
                 // We negate the value becuse the top of the screen is the origin, so subtracting will go up.
                 entity[Physics2DComponent.self].velocity = Size2(-Direction2.up) * 0.01
             }else if input.keyboard.anyKeyIsPressed(in: ["s", .down]) || input.gamePads.any.dpad.down.isPressed {
                 // Use the down facing animation
-                entity[SpriteComponent.self].activeAnimationIndex = 1
+                entity[SpriteComponent.self].setAnimation(1)
                 // We negate the value becuse the top of the screen is the origin, so subtracting will go down.
                 entity[Physics2DComponent.self].velocity = Size2(-Direction2.down) * 0.01
             }else{

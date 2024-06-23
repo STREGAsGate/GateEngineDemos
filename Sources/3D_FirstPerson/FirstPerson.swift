@@ -1,5 +1,5 @@
 /*
- * Copyright © 2023 Dustin Collins (Strega's Gate)
+ * Copyright © 2023-2024 Dustin Collins (Strega's Gate)
  * All Rights Reserved.
  *
  * http://stregasgate.com
@@ -138,7 +138,7 @@ class PlayerControllerSystem: System {
         // Give the player a collision component so we can collide with the world
         player.insert(Collision3DComponent.self) { component in
             // Dynamic collision is for objects that move and can be moved
-            component.kind = .dynamic
+            component.kind = .dynamic(0)
             // Robust protection applies a more expensiove collision check
             // This helps reduce the chance of an entity passing through a wall
             // Use this option for entites that move with controls or move at higher speeds
