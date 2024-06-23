@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1510"
+   LastUpgradeVersion = "1540"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
-      buildImplicitDependencies = "YES">
+      buildImplicitDependencies = "YES"
+      buildArchitectures = "Automatic">
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"
@@ -14,10 +15,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "56D23ED52B44F25000873FC1"
-               BuildableName = "G_PixelArtApp.app"
-               BlueprintName = "G_PixelArtApp"
-               ReferencedContainer = "container:GateEngineDemos.xcodeproj">
+               BlueprintIdentifier = "G_02_MultipleWindows"
+               BuildableName = "G_02_MultipleWindows"
+               BlueprintName = "G_02_MultipleWindows"
+               ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -43,10 +44,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "56D23ED52B44F25000873FC1"
-            BuildableName = "G_PixelArtApp.app"
-            BlueprintName = "G_PixelArtApp"
-            ReferencedContainer = "container:GateEngineDemos.xcodeproj">
+            BlueprintIdentifier = "G_02_MultipleWindows"
+            BuildableName = "G_02_MultipleWindows"
+            BlueprintName = "G_02_MultipleWindows"
+            ReferencedContainer = "container:">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -60,10 +61,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "56D23ED52B44F25000873FC1"
-            BuildableName = "G_PixelArtApp.app"
-            BlueprintName = "G_PixelArtApp"
-            ReferencedContainer = "container:GateEngineDemos.xcodeproj">
+            BlueprintIdentifier = "G_02_MultipleWindows"
+            BuildableName = "G_02_MultipleWindows"
+            BlueprintName = "G_02_MultipleWindows"
+            ReferencedContainer = "container:">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

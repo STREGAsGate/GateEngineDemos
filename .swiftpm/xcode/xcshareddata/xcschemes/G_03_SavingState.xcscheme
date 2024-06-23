@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1510"
+   LastUpgradeVersion = "1540"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
-      buildImplicitDependencies = "YES">
+      buildImplicitDependencies = "YES"
+      buildArchitectures = "Automatic">
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"
@@ -14,9 +15,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "G_04_UserInterface"
-               BuildableName = "G_04_UserInterface"
-               BlueprintName = "G_04_UserInterface"
+               BlueprintIdentifier = "G_03_SavingState"
+               BuildableName = "G_03_SavingState"
+               BlueprintName = "G_03_SavingState"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
@@ -43,9 +44,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "G_04_UserInterface"
-            BuildableName = "G_04_UserInterface"
-            BlueprintName = "G_04_UserInterface"
+            BlueprintIdentifier = "G_03_SavingState"
+            BuildableName = "G_03_SavingState"
+            BlueprintName = "G_03_SavingState"
             ReferencedContainer = "container:">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -60,9 +61,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "G_04_UserInterface"
-            BuildableName = "G_04_UserInterface"
-            BlueprintName = "G_04_UserInterface"
+            BlueprintIdentifier = "G_03_SavingState"
+            BuildableName = "G_03_SavingState"
+            BlueprintName = "G_03_SavingState"
             ReferencedContainer = "container:">
          </BuildableReference>
       </BuildableProductRunnable>
