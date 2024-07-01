@@ -88,7 +88,8 @@
 			children = (
 				5677A8652A279C1000BD0456 /* UserInput.swift */,
 			);
-			path = G_01_UserInput;
+			name = G_01_UserInput;
+			path = ../Sources/G_01_UserInput;
 			sourceTree = "<group>";
 		};
 		5677A8672A279C4200BD0456 /* Packages */ = {
@@ -104,7 +105,8 @@
 			children = (
 				569C5E662A32C5A2009CC52B /* MultipleWindows.swift */,
 			);
-			path = G_02_MultipleWindows;
+			name = G_02_MultipleWindows;
+			path = ../Sources/G_02_MultipleWindows;
 			sourceTree = "<group>";
 		};
 		56D155472A2A487800FDB7AC /* Shared */ = {
