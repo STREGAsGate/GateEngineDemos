@@ -31,6 +31,7 @@ final class UserInputGameDelegate: GameDelegate {
 final class TextComponent: Component {
     
     // Text is a renderable object that hold a string and associated meta like font, pointSize, and color
+    @MainActor
     let text = Text(string: "Press Something...", pointSize: 64, color: .white)
     
     // All components require a componentID. For performance reasons make it a let.
